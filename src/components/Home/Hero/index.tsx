@@ -4,8 +4,7 @@ import { useContext, useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Eventdata } from "@/app/api/data";
-import DonationFormContext from "@/app/context/donationContext";
+import { Eventdata } from "@/app/data/data";
 import { Test } from "./Test";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,7 +15,6 @@ interface SliderHandle {
 }
 
 const Hero = () => {
-  const donationInfo = useContext(DonationFormContext);
   const sliderRef = useRef<SliderHandle>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -43,7 +41,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden lg:mt-40 sm:mt-44 mt-20">
+    <section className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden lg:mt-20 sm:mt-22 mt-10">
       <Slider ref={sliderRef} {...settings} className="w-full h-full">
         {featuredEvents.map((event, index) => (
           <div key={index} className="relative w-full h-[500px] md:h-[600px] lg:h-[700px]">
@@ -59,39 +57,41 @@ const Hero = () => {
             {/* Overlay */}
             <div className="absolute inset-0 bg-black/30"></div>
 
-            {/* Content Container - Left Side */}
-            <div className="absolute inset-0 flex items-center">
+            {/* Content Container - Below Center */}
+            <div className="absolute inset-0 flex items-center pt-15">
               <div className="container mx-auto px-4 lg:max-w-[--breakpoint-xl]">
                 <div className="max-w-[50vw]">
-                  <div className="bg-black/50 backdrop-blur-sm p-8 md:p-10 border-b-4 border-yellow-400">
-                    <h2 className="text-white text-lg md:text-xl lg:text-2xl font-semibold leading-snug break-words">
+                  <div className="bg-black/50 backdrop-blur-sm p-4 md:p-5 lg:p-6 border-b-4 border-yellow-400">
+                    <h2 className="text-white text-xs md:text-sm lg:text-base font-semibold leading-snug line-clamp-2">
                       {event.title}
                     </h2>
+                    <p className="text-white text-xs md:text-xs lg:text-sm mt-2 line-clamp-2">
+                      {event.text}
+                    </p>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
         ))}
       </Slider>
 
-      {/* Left Navigation Button - Hidden on mobile */}
+      {/* Left Navigation Button - Simple Arrow */}
       <button
         onClick={handlePrev}
-        className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 items-center justify-center w-12 h-12 lg:w-14 lg:h-14 bg-white/20 hover:bg-white/40 text-white rounded-full transition-all duration-300 backdrop-blur-sm border border-white/30 z-20"
+        className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 items-center justify-center text-white transition-all duration-300 z-10 hover:text-yellow-400"
         aria-label="Previous slide"
       >
-        <Icon icon="mdi:chevron-left" fontSize={28} />
+        <Icon icon="mdi:chevron-left" fontSize={48} />
       </button>
 
-      {/* Right Navigation Button - Hidden on mobile */}
+      {/* Right Navigation Button - Simple Arrow */}
       <button
         onClick={handleNext}
-        className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 items-center justify-center w-12 h-12 lg:w-14 lg:h-14 bg-white/20 hover:bg-white/40 text-white rounded-full transition-all duration-300 backdrop-blur-sm border border-white/30 z-20"
+        className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 items-center justify-center text-white transition-all duration-300 z-10 hover:text-yellow-400"
         aria-label="Next slide"
       >
-        <Icon icon="mdi:chevron-right" fontSize={28} />
+        <Icon icon="mdi:chevron-right" fontSize={48} />
       </button>
 
       {/* Slide Indicators - Bottom Center */}
@@ -99,7 +99,7 @@ const Hero = () => {
         {featuredEvents.map((_, index) => (
           <button
             key={index}
-            onClick={() => sliderRef.current?.slickGoTo(index)}
+            onClick={() => { }}
             className={`h-2 rounded-full transition-all duration-300 ${currentSlide === index
               ? "bg-yellow-400 w-8"
               : "bg-white/40 w-2 hover:bg-white/60"

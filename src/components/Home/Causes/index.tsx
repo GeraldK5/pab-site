@@ -1,5 +1,5 @@
 "use client"
-import { CauseData } from "@/app/api/data";
+import { CauseData } from "@/app/data/data";
 import Image from "next/image";
 import Link from "next/link";
 import Slider from "react-slick";
@@ -38,7 +38,7 @@ const Causes = () => {
                     Causes where need your help
                 </h2>
                 <p className="text-base text-muted dark:text-white/60 text-center">
-                Support essential causes like healthcare, education, hunger relief, and empowering <br className="lg:block hidden" />  vulnerable communities. Together, we can create lasting change!
+                    Support essential causes like healthcare, education, hunger relief, and empowering <br className="lg:block hidden" />  vulnerable communities. Together, we can create lasting change!
                 </p>
                 <div className="mt-20">
                     <Slider {...settings}>

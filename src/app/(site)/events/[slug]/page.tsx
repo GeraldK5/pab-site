@@ -2,7 +2,7 @@
 import Volunteer from "@/components/SharedComponent/Volunteer";
 import EventDetails from "@/components/Events/EventDetail";
 import { useParams } from "next/navigation";
-import { Eventdata } from "@/app/api/data";
+import { Eventdata } from "@/app/data/data";
 
 const Events = () => {
   const { slug } = useParams();

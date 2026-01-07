@@ -5,9 +5,7 @@ import Footer from "@/components/Layout/Footer";
 import { ThemeProvider } from "next-themes";
 import ScrollToTop from '@/components/ScrollToTop';
 import Aoscompo from "@/utils/aos";
-import { DonationProvider } from "./context/donationContext";
 import SessionProviderComp from "@/components/nextauth/SessionProvider";
-import { AuthDialogProvider } from "./context/AuthDialogContext";
 const montserrat = Montserrat({ subsets: ["latin"] });
 import NextTopLoader from 'nextjs-toploader';
 
@@ -16,14 +14,13 @@ export default function RootLayout({
   session,
 }: Readonly<{
   children: React.ReactNode;
-  session:any
+  session: any
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={montserrat.className}>
-      <NextTopLoader color="#FF4D7E" />
-      <DonationProvider>
-        <AuthDialogProvider>
+        <NextTopLoader color="#FF4D7E" />
+
         <ThemeProvider
           attribute="class"
           enableSystem={true}
@@ -31,15 +28,13 @@ export default function RootLayout({
         >
           <Aoscompo>
             <Header />
-            
+
             {children}
-            
+
             <Footer />
           </Aoscompo>
           <ScrollToTop />
         </ThemeProvider>
-        </AuthDialogProvider>
-        </DonationProvider>
       </body>
     </html>
   );
