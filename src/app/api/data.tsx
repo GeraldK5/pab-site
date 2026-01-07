@@ -111,6 +111,7 @@ export const Eventdata: {
   image: string;
   gallery: string[];
   title: string;
+  isFeatured?: boolean;
   text: string;
   date: string;
   location: string;
@@ -124,11 +125,12 @@ export const Eventdata: {
     {
       image: "/images/event/event-1.jpg",
       gallery: [
-        "/images/event/event-1-1.jpg",
-        "/images/event/event-1-2.jpg",
-        "/images/event/event-1-3.jpg",
+        "/images/event/event-1.jpg",
+        "/images/event/event-1.jpg",
+        "/images/event/event-1.jpg",
       ],
       title: "You should have eagle’s eye on new trends and techonogies",
+      isFeatured: true,
       slug: "event-1",
       text: "Business Park, Opp. Corns Sam Restaurant, New Yoark, US",
       date: "May 10, 2024",
@@ -143,11 +145,12 @@ export const Eventdata: {
     {
       image: "/images/event/event-2.jpg",
       gallery: [
-        "/images/event/event-1-1.jpg",
-        "/images/event/event-1-2.jpg",
-        "/images/event/event-1-3.jpg",
+        "/images/event/event-2.jpg",
+        "/images/event/event-2.jpg",
+        "/images/event/event-2.jpg",
       ],
       title: "New Seminar on Newest Food Recipe from World’s Best",
+      isFeatured: true,
       slug: "event-2",
       text: "Business Park, Opp. Corns Sam Restaurant, New Yoark, US",
       date: "May 10, 2024",
@@ -162,11 +165,12 @@ export const Eventdata: {
     {
       image: "/images/event/event-3.jpg",
       gallery: [
-        "/images/event/event-1-1.jpg",
-        "/images/event/event-1-2.jpg",
-        "/images/event/event-1-3.jpg",
+        "/images/event/event-3.jpg",
+        "/images/event/event-3.jpg",
+        "/images/event/event-3.jpg",
       ],
       title: "Learn from small things to create something bigger.",
+      isFeatured: true,
       slug: "event-3",
       text: "Business Park, Opp. Corns Sam Restaurant, New Yoark, US",
       date: "May 10, 2024",
@@ -181,11 +185,12 @@ export const Eventdata: {
     {
       image: "/images/event/event-4.jpg",
       gallery: [
-        "/images/event/event-1-1.jpg",
-        "/images/event/event-1-2.jpg",
-        "/images/event/event-1-3.jpg",
+        "/images/event/event-4.jpg",
+        "/images/event/event-4.jpg",
+        "/images/event/event-4.jpg",
       ],
       title: "Literary Escapade Book Reading and Discussion.",
+      isFeatured: true,
       slug: "event-4",
       text: "Business Park, Opp. Corns Sam Restaurant, New Yoark, US",
       date: "May 10, 2024",
@@ -200,11 +205,12 @@ export const Eventdata: {
     {
       image: "/images/event/event-5.jpg",
       gallery: [
-        "/images/event/event-1-1.jpg",
-        "/images/event/event-1-2.jpg",
-        "/images/event/event-1-3.jpg",
+        "/images/event/event-5.jpg",
+        "/images/event/event-5.jpg",
+        "/images/event/event-5.jpg",
       ],
       title: "A Journey Through Time Historical Reenactment Fair.",
+      isFeatured: true,
       slug: "event-5",
       text: "Business Park, Opp. Corns Sam Restaurant, New Yoark, US",
       date: "May 10, 2024",
@@ -219,11 +225,12 @@ export const Eventdata: {
     {
       image: "/images/event/event-6.jpg",
       gallery: [
-        "/images/event/event-1-1.jpg",
-        "/images/event/event-1-2.jpg",
-        "/images/event/event-1-3.jpg",
+        "/images/event/event-6.jpg",
+        "/images/event/event-6.jpg",
+        "/images/event/event-6.jpg",
       ],
       title: "Leadership Summit Empowering Tomorrow's Leaders.",
+      isFeatured: true,
       slug: "event-6",
       text: "Business Park, Opp. Corns Sam Restaurant, New Yoark, US",
       date: "May 10, 2024",

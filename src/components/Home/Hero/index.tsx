@@ -1,59 +1,114 @@
 "use client"
 
-import { getPathFunc } from "@/utils/testing";
-import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
-import { Test } from "./Test";
+import { useContext, useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import Slider from "react-slick";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { Donation } from "./Donation";
+import { Eventdata } from "@/app/api/data";
 import DonationFormContext from "@/app/context/donationContext";
+import { Test } from "./Test";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+interface SliderHandle {
+  slickNext(): void;
+  slickPrev(): void;
+}
 
 const Hero = () => {
   const donationInfo = useContext(DonationFormContext);
+  const sliderRef = useRef<SliderHandle>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Filter featured events only
+  const featuredEvents = Eventdata.filter((event) => event.isFeatured);
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    beforeChange: (_: number, next: number) => setCurrentSlide(next),
+  };
+
+  const handlePrev = () => {
+    sliderRef.current?.slickPrev();
+  };
+
+  const handleNext = () => {
+    sliderRef.current?.slickNext();
+  };
+
   return (
-    <>
-      <section className="relative bg-cover text-white md:pt-40 md:pb-28 py-20 bg-no-repeat bg-[url('/images/hero/banner-bg.jpg')] lg:mt-40 sm:mt-44 mt-20" >
-        <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4 grid grid-cols-12">
-          <div className="bg-white rounded-md p-10 lg:col-span-5 md:col-span-7 sm:col-span-10 col-span-12 dark:bg-dark" data-aos="fade-right">
-            <div className="flex justify-between mb-6">
-              <div className="px-4 py-2 bg-midnight_text rounded-sm">
-                <p className=" text-white text-sm font-semibold">
-                  Featured
-                </p>
+    <section className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden lg:mt-40 sm:mt-44 mt-20">
+      <Slider ref={sliderRef} {...settings} className="w-full h-full">
+        {featuredEvents.map((event, index) => (
+          <div key={index} className="relative w-full h-[500px] md:h-[600px] lg:h-[700px]">
+            {/* Background Image */}
+            <Image
+              src={event.image}
+              alt={event.title}
+              fill
+              className="object-cover w-full h-full"
+              priority={index === 0}
+            />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/30"></div>
+
+            {/* Content Container - Left Side */}
+            <div className="absolute inset-0 flex items-center">
+              <div className="container mx-auto px-4 lg:max-w-[--breakpoint-xl]">
+                <div className="max-w-[50vw]">
+                  <div className="bg-black/50 backdrop-blur-sm p-8 md:p-10 border-b-4 border-yellow-400">
+                    <h2 className="text-white text-lg md:text-xl lg:text-2xl font-semibold leading-snug break-words">
+                      {event.title}
+                    </h2>
+                  </div>
+                </div>
+
               </div>
-              <p className="text-muted dark:text-white/60 text-xs font-medium">193 days left</p>
-            </div>
-            <h3 className="text-midnight_text dark:text-white text-lg font-bold mb-6">
-              Give small help to african moms who struggle
-            </h3>
-            <p className="text-muted dark:text-white/60 text-base mb-5">
-              Help provide African mothers with food, healthcare, and skills to build better lives for their families.
-            </p>
-            <div className="grid grid-cols-2 border-t border-border dark:border-dark_border mb-5">
-              <div className="col-span-1 border-r border-border dark:border-dark_border px-5 py-4">
-                <p className="text-xs text-muted dark:text-white/60 mb-1 ">Raised</p>
-                <h4 className="text-2xl text-secondary">$65,360</h4>
-              </div>
-              <div className="col-span-1 px-5 py-4">
-                <p className="text-xs text-muted dark:text-white/60 mb-1">Goal</p>
-                <h4 className="text-2xl text-midnight_text dark:text-white">$124,500</h4>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <button
-                onClick={() => donationInfo?.setIsDonationOpen(true)}
-                className="text-white bg-linear-to-r text-sm from-error to-warning px-7 py-4 hover:from-white hover:to-white dark:hover:from-dark dark:hover:to-dark border font-semibold border-transparent hover:border-error hover:text-error rounded-md"
-              >
-                Donate now
-              </button>
-              <Test />
             </div>
           </div>
-        </div>
-      </section>
+        ))}
+      </Slider>
 
-    </>
+      {/* Left Navigation Button - Hidden on mobile */}
+      <button
+        onClick={handlePrev}
+        className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 items-center justify-center w-12 h-12 lg:w-14 lg:h-14 bg-white/20 hover:bg-white/40 text-white rounded-full transition-all duration-300 backdrop-blur-sm border border-white/30 z-20"
+        aria-label="Previous slide"
+      >
+        <Icon icon="mdi:chevron-left" fontSize={28} />
+      </button>
 
+      {/* Right Navigation Button - Hidden on mobile */}
+      <button
+        onClick={handleNext}
+        className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 items-center justify-center w-12 h-12 lg:w-14 lg:h-14 bg-white/20 hover:bg-white/40 text-white rounded-full transition-all duration-300 backdrop-blur-sm border border-white/30 z-20"
+        aria-label="Next slide"
+      >
+        <Icon icon="mdi:chevron-right" fontSize={28} />
+      </button>
+
+      {/* Slide Indicators - Bottom Center */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+        {featuredEvents.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => sliderRef.current?.slickGoTo(index)}
+            className={`h-2 rounded-full transition-all duration-300 ${currentSlide === index
+              ? "bg-yellow-400 w-8"
+              : "bg-white/40 w-2 hover:bg-white/60"
+              }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    </section>
   );
 };
 
