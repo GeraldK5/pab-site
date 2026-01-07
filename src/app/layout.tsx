@@ -24,7 +24,6 @@ export default function RootLayout({
       <NextTopLoader color="#FF4D7E" />
       <DonationProvider>
         <AuthDialogProvider>
-      <SessionProviderComp session={session}>
         <ThemeProvider
           attribute="class"
           enableSystem={true}
@@ -39,7 +38,6 @@ export default function RootLayout({
           </Aoscompo>
           <ScrollToTop />
         </ThemeProvider>
-        </SessionProviderComp>
         </AuthDialogProvider>
         </DonationProvider>
       </body>

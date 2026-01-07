@@ -3,14 +3,6 @@ import { HeaderItem } from "@/types/menu";
 export const headerData: HeaderItem[] = [
   { label: "Home", href: "/" },
   {
-    label: "Causes",
-    href: "#",
-    submenu: [
-      { label: "Cause list", href: "/cause" },
-      { label: "Cause details", href: "/cause/cause-1" },
-    ],
-  },
-  {
     label: "Events",
     href: "#",
     submenu: [
