@@ -5,11 +5,14 @@ import { Eventdata } from "@/app/api/data";
 import { format } from "date-fns";
 
 const EventList = () => {
+  // Only show first 6 events
+  const displayedEvents = Eventdata.slice(0, 6);
+  
   return (
     <section className="lg:py-28 py-16 dark:bg-dark">
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4">
         <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
-          {Eventdata.map((item, index) => (
+          {displayedEvents.map((item, index) => (
             <Link key={index} href={`/events/${item.slug}`} className="group" data-aos="fade-up" data-aos-delay={`${index * 120}`}>
               <div className="relative overflow-hidden mb-8">
                 <Image
@@ -46,6 +49,19 @@ const EventList = () => {
               </h5>
             </Link>
           ))}
+        </div>
+        <div className="flex justify-center mt-12">
+          <Link 
+            href="/events/all"
+            className="px-8 py-3 bg-primary hover:bg-secondary text-white font-medium rounded-md transition-colors duration-300 flex items-center gap-2"
+          >
+            See More
+            <Icon
+              icon="solar:arrow-right-linear"
+              width="20"
+              height="20"
+            />
+          </Link>
         </div>
       </div>
     </section>

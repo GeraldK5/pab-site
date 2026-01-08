@@ -20,6 +20,8 @@ const Events = () => {
         type={item?.type}
         entrants={item?.entrants}
         image={item?.image}
+        gallery={item?.gallery}
+        video={item?.video}
       />
       <Volunteer />
     </>
