@@ -120,11 +120,7 @@ export const Eventdata: {
   category: string;
   detail?: string | null;
   slug: string;
-  feedback?: {
-    allowFeedback: boolean;
-    type: "url";
-    url?: string;
-  } | null;
+  video?: string;
   content: {
     header: string | null;
     type: "html" | "pdf" | "doc" | "url";
@@ -136,11 +132,17 @@ export const Eventdata: {
   } | null;
 }[] = [
     {
-      image: "/images/event/event-1.jpg",
+      image: "/images/event/kibalo2.jpg",
       gallery: [
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
+        "/images/event/kibalo6.jpg",
+        "/images/event/kibalo7.jpg",
+        "/images/event/kibalo8.jpg",
+          "/images/event/kibalo8.jpg",
+        "/images/event/kibalo9.jpg",
+        "/images/event/kibalo10.jpg",
+        "/images/event/kibalo11.jpg",
+        "/images/event/kibalo12.jpg",
+        "/images/event/kibalo16.jpg",
       ],
       title: "Think Tank Session towards commercialization of the value chain analysis and kibalo tools",
       isFeatured: false,
@@ -151,15 +153,22 @@ export const Eventdata: {
       type: "Past",
       duration: "26th - 29th August 2025",
       category: "Think Tank",
-      detail: "The Productivity Acceleration Bureau under STI-OP is mandated to develop policies that promote innovative value chain management and the commercialization of research and innovation to drive productivity growth. Its objective is to support Uganda’s Vision 2040 target of growing the national GDP to USD 550 billion by facilitating a mass shift from low-profit, low-impact investments to high-profit, high-impact enterprises within the money economy. This will be achieved through the application, commercialization, and wide distribution of proven tools such as Kibalo and value chain analysis to increase household incomes and improve the quality of life for Ugandans",
+      detail: "The Productivity Acceleration Bureau under STI-OP is mandated to develop policies that promote innovative value chain management and the commercialization of research and innovation to drive productivity growth. Its objective is to support Uganda's Vision 2040 target of growing the national GDP to USD 550 billion by facilitating a mass shift from low-profit, low-impact investments to high-profit, high-impact enterprises within the money economy. This will be achieved through the application, commercialization, and wide distribution of proven tools such as Kibalo and value chain analysis to increase household incomes and improve the quality of life for Ugandans",
+      video: "https://youtu.be/5P1362K5WAU",
       content: null,
     },
     {
-      image: "/images/event/event-1.jpg",
+      image: "/images/event/kibalo20.jpg",
       gallery: [
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
+        "/images/event/kibalo2.jpg",
+        "/images/event/kibalo21.jpg",
+        "/images/event/kibalo23.jpg",
+          "/images/event/kibalo8.jpg",
+        "/images/event/kibalo9.jpg",
+        "/images/event/kibalo10.jpg",
+        "/images/event/kibalo11.jpg",
+        "/images/event/kibalo12.jpg",
+        "/images/event/kibalo16.jpg",
       ],
       title: "Conduct Kibalo for 150 Enterprises and Rank the Topmost 100 Using the STI-OP Kibalo Tool",
       isFeatured: false,
@@ -171,14 +180,21 @@ export const Eventdata: {
       duration: "8th - 12th, December 2025",
       category: "Kibalo Tool",
       detail: "The Productivity Acceleration Bureau of STI-OP developed a special tool (“Kibalo tool”) to guide investment decision-making processes by analyzing and identifying the most profitable enterprises for national qualitative economic leap. The tool has been developed and pending second testing. The tool has been proven highly effective during field piloting in providing simplified, user-friendly, and actionable business financial assessment insights for farmers, small enterprises, cooperatives and entrepreneurial youth groups. The results from the first pilot showed that the tool could work under single user mode. This could limit the mass analysis of many enterprises by different people at the same time. The new version has been modified to allow multiser mode for mass enterprise analysis. The next step is testing the multiuser and mass analysis mode while developing a compendium of the top profitable enterprises in Uganda to support enterprise-level investment decision making and national planning. As part of this process, the Bureau intends to organise a technical workshop to use the tool in analysing one hundred fifty (150) enterprises and ranking the top one hundred (100) most profitable amongst them.",
+      video: "https://youtu.be/5P1362K5WAU",
       content: null,
     },
     {
-      image: "/images/event/event-1.jpg",
+      image: "/images/event/kibalo11.jpg",
       gallery: [
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
+        "/images/event/kibalo18.jpg",
+        "/images/event/kibalo19.jpg",
+        "/images/event/kibalo13.jpg",
+          "/images/event/kibalo8.jpg",
+        "/images/event/kibalo9.jpg",
+        "/images/event/kibalo10.jpg",
+        "/images/event/kibalo11.jpg",
+        "/images/event/kibalo12.jpg",
+        "/images/event/kibalo16.jpg",
       ],
       title: "Bukedi Youth Engagements for accelerated wealth creation",
       isFeatured: false,
@@ -193,14 +209,21 @@ export const Eventdata: {
       Through innovative mobilization via football competitions and cultural galas, the activity reached over 31,000 youths. Sensitization sessions on the Strategic Plan and government programs were conducted before matches, with 31,400 flyers distributed. Training on the enhanced automated multi-user Kibalo tool for enterprise prioritization was provided to representative youth members on the last two days of the activity.
       The activity achieved its objectives of raising awareness and building capacity among youths, marking a significant step in increasing youth involvement in the four priority agro-enterprises and contributing to regional wealth creation. 
       `,
+      video: "https://youtu.be/5P1362K5WAU",
       content: null,
     },
     {
-      image: "/images/event/event-1.jpg",
+      image: "/images/event/kibalo5.jpg",
       gallery: [
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
+        "/images/event/kibalo6.jpg",
+        "/images/event/kibalo7.jpg",
+        "/images/event/kibalo9.jpg",
+          "/images/event/kibalo8.jpg",
+        "/images/event/kibalo9.jpg",
+        "/images/event/kibalo10.jpg",
+        "/images/event/kibalo11.jpg",
+        "/images/event/kibalo12.jpg",
+        "/images/event/kibalo16.jpg",
       ],
       title: "Support the focus group discussion of value chain analysis of textile and leather in Uganda",
       isFeatured: true,
@@ -212,6 +235,7 @@ export const Eventdata: {
       duration: "14th -18th Oct 2025",
       category: "Value Chain Analysis",
       detail: "The Focus Group Discussion (FGD) held from 14th to 18th October 2025 completed the Value Chain Analysis for Uganda’s Textile and Leather sectors. The workshop brought together over 190 participants from across the two value chains - including farmers, processors and manufacturers, traders, consumers, policymakers, and industry specialists. The FGD successfully: Finalized the mapping of the textile and leather value chains; Identified priority value addition pathways; Analyzed costs, markets, and economic potential of products; Highlighted sector-specific challenges; Proposed strategic interventions for industrialization. Key findings reveal that both sectors have high potential to contribute significantly to Uganda’s GDP through value addition, import substitution, export growth, and job creation. The textile sector showed exceptionally high value creation in pathways such as Fiber → Non-Woven Fabric → Diapers, while the textile apparel chain—especially knitted sweaters—showed strong profitability. Leather pathways (pending completion) highlighted opportunities in hides and skins processing, tannery upgrading, and leather goods manufacturing.",
+      video: "https://youtu.be/5P1362K5WAU",
       content: null,
     },
     {
@@ -224,6 +248,7 @@ export const Eventdata: {
         "/images/event-images/Busoga-Strategic-Plan-5.jpeg",
         "/images/event-images/Busoga-Strategic-Plan-6.jpeg",
         "/images/event-images/Busoga-Strategic-Plan-7.jpg",
+        
       ],
       title: "Support the completion of the think tank session for drafting the Busoga sub-region strategic plan for accelerated wealth creation",
       isFeatured: true,
@@ -240,6 +265,7 @@ export const Eventdata: {
       duration: "4th to 9th Jan 2026",
       category: "Strategic Planning",
       detail: null,
+      video: "https://youtu.be/5P1362K5WAU",
       content: {
         header: null,
         type: "url",
@@ -255,11 +281,17 @@ export const Eventdata: {
       }
     },
     {
-      image: "/images/event/event-1.jpg",
+      image: "/images/event/kibalo1.jpg",
       gallery: [
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
+        "/images/event/kibalo10.jpg",
+        "/images/event/kibalo12.jpg",
+        "/images/event/kibalo15.jpg",
+          "/images/event/kibalo8.jpg",
+        "/images/event/kibalo9.jpg",
+        "/images/event/kibalo10.jpg",
+        "/images/event/kibalo11.jpg",
+        "/images/event/kibalo12.jpg",
+        "/images/event/kibalo16.jpg",
       ],
       title: "Report Completion of commodity value chain analysis report for Orange, Mango, Banana, and Coffee",
       isFeatured: true,
@@ -271,6 +303,7 @@ export const Eventdata: {
       duration: "8th -12th Sept 2025",
       category: "Value Chain Analysis",
       detail: "The establishment of four Agro-Science, Technology and Industrial Parks has been prioritized by the NDP IV and hence the ITDT PIAP. The Productivity Acceleration Bureau  had a venture at Busitema University which was focusing on developing the park and piloting it with the Orange Fleshed Sweet Potato value added products. The venture team collected substantial data for the feasibility study. This year, PAB has targeted to have preliminary works done at the site. However, this will require proof that the University has provided land for this purpose. This activity aims at following on the land acquisition for the Eastern Agro-Science, Technology and Industrial Park at Busitema University.",
+      video: "https://youtu.be/5P1362K5WAU",
       content: null,
     },
     {
@@ -283,6 +316,12 @@ export const Eventdata: {
         "/images/event-images/agro-parks-5.jpg",
         "/images/event-images/agro-parks-6.jpg",
         "/images/event-images/agro-parks-7.jpg",
+        "/images/event/kibalo8.jpg",
+        "/images/event/kibalo9.jpg",
+        "/images/event/kibalo10.jpg",
+        "/images/event/kibalo11.jpg",
+        "/images/event/kibalo12.jpg",
+        "/images/event/kibalo16.jpg",
       ],
       title: "Land Acquisition Process For Central, Western And Northern Regional Agro-Science, Technology And Industrial Parks In Uganda",
       isFeatured: true,
@@ -294,14 +333,21 @@ export const Eventdata: {
       duration: "26th November To 6th December 2025",
       category: "Industrial Parks",
       detail: "The establishment of four Agro-Science, Technology, and Industrial Parks has been prioritized under the NDP IV and the ITDT Programme Implementation Action Plan (PIAP). This year, the Productivity Acceleration Bureau (PAB) has focused on securing land for these parks, targeting major public universities in the four regions of Uganda which are; Central, Eastern, Western and Northern. Each region will be required to provide land through one public university in a given region and a formal proof of land allocation by the University Council for this purpose. Notably, the Productivity Acceleration Bureau through STI-OP, has secured land for the Eastern Agro-Science, Technology, and Industrial Park at Busitema University, Arapai Campus. The next phase involves engaging the remaining regions of Central, Western, and Northern Uganda to initiate the land allocation process for the other three remaining Agro-science, Technology and Industrial Parks.",
+      video: "https://youtu.be/5P1362K5WAU",
       content: null,
     },
     {
-      image: "/images/event/event-1.jpg",
+      image: "/images/event/kibalo20.jpg",
       gallery: [
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
+        "/images/event/kibalo2.jpg",
+        "/images/event/kibalo5.jpg",
+        "/images/event/kibalo6.jpg",
+          "/images/event/kibalo8.jpg",
+        "/images/event/kibalo9.jpg",
+        "/images/event/kibalo10.jpg",
+        "/images/event/kibalo11.jpg",
+        "/images/event/kibalo12.jpg",
+        "/images/event/kibalo16.jpg",
       ],
       title: "The Land Acquisition for the Eastern Agro Science, Technology, and Industrial Park at Busitema University, Arapai Campus",
       isFeatured: true,
@@ -313,14 +359,26 @@ export const Eventdata: {
       duration: "10th -17th August 2025",
       category: "Land Acquisition",
       detail: "The establishment of four Agro-Science, Technology and Industrial Parks has been prioritized by the NDP IV and hence the ITDT PIAP. The Productivity Acceleration Bureau had a venture at Busitema University which was focusing on developing the park and piloting it with the Orange Fleshed Sweet Potato value added products. The venture team collected substantial data for the feasibility study. This year, PAB has targeted to have preliminary works done at the site. However, this will require proof that the University has provided land for this purpose. This activity aims at following on the land acquisition for the Eastern Agro-Science, Technology and Industrial Park",
+      video: "https://youtu.be/5P1362K5WAU",
       content: null,
     },
     {
-      image: "/images/event/event-1.jpg",
+      image: "/images/event/kibalo7.jpg",
       gallery: [
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
+        "/images/event/kibalo8.jpg",
+        "/images/event/kibalo9.jpg",
+        "/images/event/kibalo10.jpg",
+        "/images/event/kibalo11.jpg",
+        "/images/event/kibalo12.jpg",
+        "/images/event/kibalo16.jpg",
+          "/images/event/kibalo8.jpg",
+        "/images/event/kibalo9.jpg",
+        "/images/event/kibalo10.jpg",
+        "/images/event/kibalo11.jpg",
+        "/images/event/kibalo12.jpg",
+        "/images/event/kibalo16.jpg",
+        
+
       ],
       title: "Status Surveys on available Mass Production Agro Processing Facilities and Value Chains in Eastern Uganda",
       isFeatured: true,
@@ -332,14 +390,18 @@ export const Eventdata: {
       duration: "15th Sept -5th October 2025",
       category: "Surveys & Research",
       detail: "In line with this, NDP IV has prioritised Science, Technology and Innovation as one of the four pillars for its implementation through the ITDT program and PIAP. Therefore, STI-OP through the Productivity Acceleration Bureau has planned to start on the Eastern Uganda Agro Science, Technology and Industrial Park this Financial Year. However, to progress, the team has to know the productivity status of the region, especially understanding the current agroprocessing capacity and functionality of existing facilities, and commodity value chains. collect data on the available agro-processing and value addition facilities and priority agro commodities being produced in the country starting with the Eastern Region, which will later be rolled out to the other regions of Uganda. This will help in planning for the park and identifying gaps that need to be addressed to enhance productivity and value addition in the region.",
+      video: "https://youtu.be/5P1362K5WAU",
       content: null,
     },
     {
-      image: "/images/event/event-1.jpg",
+      image: "/images/event/kibalo7.jpg",
       gallery: [
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
+        "/images/event/kibalo8.jpg",
+        "/images/event/kibalo9.jpg",
+        "/images/event/kibalo10.jpg",
+        "/images/event/kibalo11.jpg",
+        "/images/event/kibalo12.jpg",
+        "/images/event/kibalo16.jpg",
       ],
       title: "Bukedi sub regional leaders meetings aimed at communicating the progress of implementation of the Bukedi strategic plan for accelerated wealth creation from 3rd to 17th November 2025",
       isFeatured: true,
@@ -351,6 +413,7 @@ export const Eventdata: {
       duration: "3rd - 17th December 2025",
       category: "Leadership Engagement",
       detail: null,
+      video: "https://youtu.be/5P1362K5WAU",
       content: null,
     },
   ];

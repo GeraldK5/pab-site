@@ -1,32 +1,29 @@
 "use client";
-import MoreInfo from "@/components/SharedComponent/Volunteer";
-import EventDetails from "@/components/Events/EventDetail";
-import { useSearchParams } from "next/navigation";
-import { Eventdata } from "@/app/data/data";
+import Volunteer from "@/components/SharedComponent/Volunteer/index";
+import EventDetails from "@/components/Events/EventDetail/index";
+import { useParams } from "next/navigation";
+import { Eventdata } from "@/app/api/data";
 
 const Events = () => {
-  const searchParams = useSearchParams();
-  const slug = searchParams.get("event");
+  const { slug } = useParams();
 
   const item = Eventdata.find((item) => item.slug === slug);
   return (
     <>
       <EventDetails
         title={item?.title}
-        detail={item?.detail ?? undefined}
+        detail={item?.detail}
         category={item?.category}
         location={item?.location}
         eventdate={item?.date}
         duration={item?.duration}
         type={item?.type}
-        entrants={undefined}
+        entrants={item?.entrants}
         image={item?.image}
         gallery={item?.gallery}
         video={item?.video}
-        content={item?.content}
-        feedback={item?.feedback}
       />
-      <MoreInfo />
+      <Volunteer />
     </>
   );
 };
