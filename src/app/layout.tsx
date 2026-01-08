@@ -5,7 +5,6 @@ import Footer from "@/components/Layout/Footer";
 import { ThemeProvider } from "next-themes";
 import ScrollToTop from '@/components/ScrollToTop';
 import Aoscompo from "@/utils/aos";
-import SessionProviderComp from "@/components/nextauth/SessionProvider";
 const montserrat = Montserrat({ subsets: ["latin"] });
 import NextTopLoader from 'nextjs-toploader';
 

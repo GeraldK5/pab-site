@@ -4,6 +4,7 @@ import { getResources } from "@/app/data/data";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { useState } from "react";
+import WelcomeModal from "@/components/Home/WelcomeModal";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -18,6 +19,7 @@ export default function ResourcesPage() {
 
     return (
         <section className="sm:mt-28 pt-28 sm:pb-28 pb-12 dark:bg-dark">
+            <WelcomeModal delayMs={3000} maxViews={3} />
             <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4">
                 {/* Page Header */}
                 <div className="mb-12">
@@ -92,8 +94,8 @@ export default function ResourcesPage() {
                                 key={page}
                                 onClick={() => setCurrentPage(page)}
                                 className={`px-3 py-2 rounded transition-colors ${currentPage === page
-                                        ? "bg-primary text-white"
-                                        : "border border-border dark:border-dark_border text-darktext dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                    ? "bg-primary text-white"
+                                    : "border border-border dark:border-dark_border text-darktext dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                                     }`}
                             >
                                 {page}

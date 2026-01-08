@@ -14,6 +14,7 @@ export const Eventdata: {
   isFeatured?: boolean;
   text: string;
   date: string;
+  advertiseOnModal?: boolean;
   location: string;
   type: "Ongoing" | "Past" | "Upcoming";
   duration: string;
@@ -156,6 +157,7 @@ export const Eventdata: {
       ],
       title: "Support the completion of the think tank session for drafting the Busoga sub-region strategic plan for accelerated wealth creation",
       isFeatured: true,
+      advertiseOnModal: true,
       feedback: {
         allowFeedback: true,
         type: 'url',
