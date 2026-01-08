@@ -45,11 +45,11 @@ const Header: React.FC = () => {
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-2">
                 <Image src="/images/icons/icon-mail.svg" alt="mail" width={14} height={14} />
-                <span className="text-black dark:text-white">info@endeavor.com</span>
+                <span className="text-white dark:text-white">productivityaccelerationbureau@gmail.com</span>
               </div>
               <div className="hidden sm:flex items-center gap-2">
                 <Image src="/images/icons/icon-phone.svg" alt="phone" width={14} height={14} />
-                <span className="text-black dark:text-white">703 (123) 4567</span>
+                <span className="text-white dark:text-white">call 0751206482  or 0700422202</span>
               </div>
             </div>
             <div className="flex items-center gap-4">

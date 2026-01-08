@@ -61,7 +61,7 @@ const Footer: FC = () => {
                   href="#"
                   className="text-sm text-midnight_text dark:text-white mb-0 hover:text-primary!"
                 >
-                  1 (888) 123 4567
+                  call 0751206482  or 0700422202
                 </Link>
               </div>
             </div>
