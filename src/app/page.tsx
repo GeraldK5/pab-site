@@ -7,7 +7,7 @@ import HomeUpdates from '@/components/Home/HomeUpdates';
 import Testimonial from '@/components/Home/Testimonial';
 import MoreInfo from '@/components/SharedComponent/Volunteer';
 export const metadata: Metadata = {
-  title: "Endeavor",
+  title: "Productivity Acceleration Bureau",
 };
 
 export default function Home() {
