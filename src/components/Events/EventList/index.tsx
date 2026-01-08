@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Icon } from "@iconify/react";
-import { Eventdata } from "@/app/api/data";
+import { Eventdata } from "@/app/data/data";
 import { format } from "date-fns";
 
 const EventList = () => {
@@ -20,7 +20,7 @@ const EventList = () => {
                   alt="image"
                   width={350}
                   height={200}
-                  className="w-full h-auto group-hover:scale-110 duration-300 scale-[1.01]" 
+                  className="w-full h-auto group-hover:scale-110 duration-300 scale-[1.01]"
                 />
                 <div className="px-3 py-2 bg-linear-to-r from-primary to-secondary absolute z-1 top-3 right-3 rounded-sm">
                   <p className="text-white text-sm mb-0 text-center">

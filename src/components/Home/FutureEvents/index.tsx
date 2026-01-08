@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState } from "react";
-import { Eventdata } from "@/app/api/data";
+import { Eventdata } from "@/app/data/data";
 import Link from "next/link";
 import Image from "next/image";
 import { Icon } from "@iconify/react";
@@ -15,7 +15,7 @@ interface SliderHandle {
   slickPrev(): void;
 }
 
-const FutureEvents = () => {
+const EventUpdates = () => {
   const sliderRef = useRef<SliderHandle>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -56,68 +56,65 @@ const FutureEvents = () => {
   };
 
   return (
-    <section className="lg:py-10 py-8 dark:bg-dark">
+    <section className="lg:py-10 py-8 dark:bg-dark overflow-hidden">
       <div className="container mx-auto lg:max-w-[--breakpoint-xl] px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-medium mb-3" data-aos="fade-left">
-            Featured Events
+        <div className="text-left mb-12">
+          <h2 className="text-3xl font-bold mb-3" data-aos="fade-left">
+            Latest News Updates from Productivity
           </h2>
-          <p className="text-base text-muted dark:text-white/60 mx-auto lg:max-w-60%">
-            Join us at local events to make a difference! Connect, volunteer, and support our mission in your community.
+          <p className="text-base font-normal text-muted dark:text-white/60 lg:max-w-60%">
+            Stay informed about the latest developments, initiatives, and success stories from our bureau.
           </p>
         </div>
 
-        <div className="relative mt-20">
+        <div className="relative mt-20 lg:px-16">
           {/* Carousel */}
           <Slider ref={sliderRef} {...settings}>
             {featuredEvents.map((item, index) => (
               <div key={index} className="px-3">
-                <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
-                  {/* Image Container */}
-                  <div className="relative overflow-hidden h-64">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                  </div>
-
-                  {/* Content Container */}
-                  <div className="p-6">
-                    {/* Date Badge */}
-                    <div className="flex items-center gap-2 text-sm text-muted dark:text-white/60 mb-4">
-                      <Icon icon="mdi:calendar" width="20" height="20" />
-                      <span>{format(new Date(item.date), "dd MMM, yyyy")}</span>
+                <Link href={`/events/${item.slug}`}>
+                  <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-full cursor-pointer group">
+                    {/* Image Container */}
+                    <div className="relative overflow-hidden h-64">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
                     </div>
 
-                    {/* Title */}
-                    <h4 className="text-lg font-semibold mb-4 line-clamp-2 hover:text-primary transition-colors duration-200">
-                      <Link href={`/events/${item.slug}`}>
+                    {/* Content Container */}
+                    <div className="p-6">
+                      {/* Date Badge */}
+                      <div className="flex items-center gap-2 text-sm text-muted dark:text-white/60 mb-4">
+                        <Icon icon="mdi:calendar" width="20" height="20" />
+                        <span>{format(new Date(item.date), "dd MMM, yyyy")}</span>
+                      </div>
+
+                      {/* Title */}
+                      <h4 className="text-lg font-semibold mb-4 line-clamp-2 group-hover:text-primary transition-colors duration-200">
                         {item.title}
-                      </Link>
-                    </h4>
+                      </h4>
 
-                    {/* Description */}
-                    <p className="text-muted dark:text-white/60 text-sm mb-6 line-clamp-3">
-                      {item.text}
-                    </p>
+                      {/* Description */}
+                      <p className="text-muted dark:text-white/60 text-sm mb-6 line-clamp-3">
+                        {item.text}
+                      </p>
 
-                    {/* Learn More Link */}
-                    <Link 
-                      href={`/events/${item.slug}`}
-                      className="text-error hover:text-warning text-base font-medium flex gap-2 items-center w-fit group"
-                    >
-                      Learn More
-                      <Icon
-                        icon="solar:arrow-right-linear"
-                        width="20"
-                        height="20"
-                        className="group-hover:translate-x-1 transition-transform duration-200"
-                      />
-                    </Link>
+                      {/* Learn More Link */}
+                      <div className="text-yellow-400 group-hover:text-primary text-base font-medium flex gap-2 items-center w-fit transition-colors duration-200">
+                        Learn More
+                        <Icon
+                          icon="solar:arrow-right-linear"
+                          width="20"
+                          height="20"
+                          className="group-hover:translate-x-1 transition-transform duration-200"
+                        />
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </Slider>
@@ -125,7 +122,7 @@ const FutureEvents = () => {
           {/* Navigation Buttons */}
           <button
             onClick={handlePrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 flex items-center justify-center w-12 h-12 bg-white dark:bg-gray-800 hover:bg-primary hover:text-white text-gray-800 dark:text-white rounded-lg shadow-lg transition-all duration-300 z-10 border-2 border-gray-200 dark:border-gray-700"
+            className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center justify-center w-12 h-12 bg-white dark:bg-gray-800 hover:bg-primary hover:text-white text-gray-800 dark:text-white rounded-lg shadow-lg transition-all duration-300 z-10 border-2 border-gray-200 dark:border-gray-700"
             aria-label="Previous slides"
           >
             <Icon icon="mdi:chevron-left" fontSize={24} />
@@ -133,7 +130,7 @@ const FutureEvents = () => {
 
           <button
             onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-12 flex items-center justify-center w-12 h-12 bg-white dark:bg-gray-800 hover:bg-primary hover:text-white text-gray-800 dark:text-white rounded-lg shadow-lg transition-all duration-300 z-10 border-2 border-gray-200 dark:border-gray-700"
+            className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center justify-center w-12 h-12 bg-white dark:bg-gray-800 hover:bg-primary hover:text-white text-gray-800 dark:text-white rounded-lg shadow-lg transition-all duration-300 z-10 border-2 border-gray-200 dark:border-gray-700"
             aria-label="Next slides"
           >
             <Icon icon="mdi:chevron-right" fontSize={24} />
@@ -144,4 +141,4 @@ const FutureEvents = () => {
   );
 };
 
-export default FutureEvents;
+export default EventUpdates;

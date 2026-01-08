@@ -1,4 +1,4 @@
-import { helpdata } from "@/app/api/data";
+import { helpdata } from "@/app/data/data";
 import Image from 'next/image';
 
 const Help = () => {
@@ -10,7 +10,7 @@ const Help = () => {
                         How can you help us?
                     </h2>
                     <p className="text-muted dark:text-white/60 text-base">
-                    You can support us by donating, volunteering your time, or providing food supplies.<br className="lg:block hidden" /> Every effort makes a difference!
+                        You can support us by donating, volunteering your time, or providing food supplies.<br className="lg:block hidden" /> Every effort makes a difference!
                     </p>
                     <div className="mt-20 grid grid-cols-12 gap-8">
                         {helpdata.map((item, index) => (

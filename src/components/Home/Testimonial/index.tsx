@@ -1,5 +1,5 @@
 "use client"
-import { Reviews } from "@/app/api/data";
+import { Reviews } from "@/app/data/data";
 import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -30,7 +30,7 @@ const Testimonial = () => {
                     Check what our donators are saying
                 </h2>
                 <p className="text-base text-center text-muted dark:text-white/60 lg:max-w-60% mx-auto">
-                Discover heartfelt stories from our supporters who are helping us make a difference. See how their contributions are changing lives and inspiring hope!
+                    Discover heartfelt stories from our supporters who are helping us make a difference. See how their contributions are changing lives and inspiring hope!
                 </p>
                 <div className="mt-20">
                     <Slider {...settings}>
