@@ -7,7 +7,7 @@ import EventUpdates from '@/components/Home/FutureEvents';
 import Mandate from '@/components/Home/Mandate';
 import HomeUpdates from '@/components/Home/HomeUpdates';
 import Testimonial from '@/components/Home/Testimonial';
-import Volunteer from '@/components/SharedComponent/Volunteer';
+import MoreInfo from '@/components/SharedComponent/Volunteer';
 export const metadata: Metadata = {
   title: "Endeavor",
 };
@@ -22,7 +22,7 @@ export default function Home() {
       <Mandate />
       <HomeUpdates />
       {/* <Testimonial /> */}
-      <Volunteer />
+      <MoreInfo />
     </main>
   )
 }

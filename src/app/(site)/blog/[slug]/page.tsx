@@ -1,5 +1,5 @@
 import LatestBlog from "@/components/Blog/LatestBlog";
-import Volunteer from "@/components/SharedComponent/Volunteer";
+import MoreInfo from "@/components/SharedComponent/Volunteer";
 import { getAllPosts, getPostBySlug } from "@/utils/markdown";
 import markdownToHtml from "@/utils/markdownToHtml";
 import { format } from "date-fns";
@@ -233,7 +233,7 @@ export default async function Post({ params }: any) {
       </section>
       <div className="bg-SnowySky dark:bg-darklight">
         <LatestBlog />
-        <Volunteer />
+        <MoreInfo />
       </div>
     </>
   );

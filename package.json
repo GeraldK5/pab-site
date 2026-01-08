@@ -11,11 +11,15 @@
   "dependencies": {
     "@iconify/icons-ion": "^1.2.10",
     "@iconify/react": "^5.0.1",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
     "@tailwindcss/typography": "^0.5.19",
     "aos": "^2.3.4",
     "axios": "^1.7.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "date-fns": "^3.4.0",
     "gray-matter": "^4.0.3",
+    "lucide-react": "^0.562.0",
     "next": "^15.1.1",
     "next-auth": "^4.24.11",
     "next-themes": "^0.3.0",
@@ -26,7 +30,9 @@
     "react-slick": "^0.30.2",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.2",

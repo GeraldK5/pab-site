@@ -18,6 +18,6 @@ export const headerData: HeaderItem[] = [
       { label: "Resources details", href: "/resources/resource_1" },
     ],
   },
-  { label: "Contact", href: "/contact" },
-  { label: "Documentation", href: "/documentation#version" },
+  // { label: "Contact", href: "/contact" },
+  // { label: "Documentation", href: "/documentation#version" },
 ];

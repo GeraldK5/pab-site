@@ -1,6 +1,6 @@
 import HeroSub from "@/components/SharedComponent/HeroSub";
 import EventList from "@/components/Events/EventList";
-import Volunteer from "@/components/SharedComponent/Volunteer";
+import MoreInfo from "@/components/SharedComponent/Volunteer";
 import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "Activity List | Productivity Acceleration",
@@ -10,10 +10,10 @@ const Page = () => {
     return (
         <>
             <HeroSub
-                title="Activity List"
+                title="News and Updates"
             />
             <EventList />
-            <Volunteer />
+            <MoreInfo />
         </>
     )
 }

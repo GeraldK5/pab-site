@@ -93,13 +93,13 @@ const Header: React.FC = () => {
                   href={item.href || "#"}
                   className={`relative text-base font-medium transition-colors hover:text-primary ${
                     pathUrl === item.href
-                      ? "text-primary"
+                      ? "text-yellow-400"
                       : "text-midnight_text dark:text-white"
                   }`}
                 >
                   {item.label}
                   {pathUrl === item.href && (
-                    <span className="absolute -bottom-4 left-0 right-0 h-0.5 bg-primary"></span>
+                    <span className="absolute -bottom-4 left-0 right-0 h-0.5 bg-yellow-400"></span>
                   )}
                 </Link>
               ))}

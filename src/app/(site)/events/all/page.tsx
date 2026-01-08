@@ -1,6 +1,6 @@
 import HeroSub from "@/components/SharedComponent/HeroSub";
 import PaginatedEventList from "@/components/Events/AllEvents";
-import Volunteer from "@/components/SharedComponent/Volunteer";
+import MoreInfo from "@/components/SharedComponent/Volunteer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ const Page = () => {
                 title="All Activities"
             />
             <PaginatedEventList />
-            <Volunteer />
+            <MoreInfo />
         </>
     )
 }

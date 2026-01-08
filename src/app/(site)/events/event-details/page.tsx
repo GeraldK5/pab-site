@@ -1,5 +1,5 @@
 "use client";
-import Volunteer from "@/components/SharedComponent/Volunteer";
+import MoreInfo from "@/components/SharedComponent/Volunteer";
 import EventDetails from "@/components/Events/EventDetail";
 import { useSearchParams } from "next/navigation";
 import { Eventdata } from "@/app/data/data";
@@ -25,7 +25,7 @@ const Events = () => {
         video={item?.video}
         content={item?.content}
       />
-      <Volunteer />
+      <MoreInfo />
     </>
   );
 };

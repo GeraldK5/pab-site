@@ -72,7 +72,7 @@ const EventUpdates = () => {
           <Slider ref={sliderRef} {...settings}>
             {featuredEvents.map((item, index) => (
               <div key={index} className="px-3">
-                <Link href={`/events/${item.slug}`}>
+                <Link href={`/events/event-details?event=${item.slug}`}>
                   <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-full cursor-pointer group">
                     {/* Image Container */}
                     <div className="relative overflow-hidden h-64">

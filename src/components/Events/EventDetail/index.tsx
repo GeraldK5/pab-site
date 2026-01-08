@@ -6,10 +6,11 @@ import { Icon } from "@iconify/react";
 
 interface ContentType {
   header: string | null;
-  type: "html" | "pdf" | "doc";
+  type: "html" | "pdf" | "doc" | "url";
   htmlContent: string | null;
   pdfContent: string | null;
   docContent: string | null;
+  url: string | null;
   footer: string | null;
 }
 
@@ -305,6 +306,18 @@ const EventDetails: FC<EventProps> = ({
                   <Icon icon="solar:download-linear" width="20" height="20" />
                   Download Document
                 </a>
+              </div>
+            )}
+
+            {/* URL Content - Iframe */}
+            {content.type === "url" && content.url && (
+              <div className="w-full h-screen">
+                <iframe
+                  src={content.url}
+                  className="w-full h-full rounded-lg border border-border dark:border-dark_border"
+                  title="Content"
+                  allow="fullscreen"
+                ></iframe>
               </div>
             )}
 

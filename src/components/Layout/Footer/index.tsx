@@ -9,7 +9,7 @@ const Footer: FC = () => {
     <footer className="pt-16 dark:bg-dark">
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) px-4">
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-8 pb-10 ">
-          <div className="lg:col-span-4 md:col-span-6 col-span-12">
+          <div className="lg:col-span-3 md:col-span-6 col-span-12">
             <div className="flex items-center gap-4">
               <Link href="/" className="flex items-center">
                 <Image src="/logo.svg" alt="Logo" width={180} height={50} className="h-12 w-auto" />
@@ -32,7 +32,7 @@ const Footer: FC = () => {
               </div>
             </div>
           </div>
-          <div className="lg:col-span-4 md:col-span-6 col-span-12">
+          <div className="lg:col-span-3 md:col-span-6 col-span-12">
             <div className="flex items-start mb-8 gap-4">
               <Image
                 src="/images/icons/icon-pin.svg"
@@ -77,25 +77,55 @@ const Footer: FC = () => {
                   href="#"
                   className="text-sm text-midnight_text dark:text-white mb-0 hover:text-primary!"
                 >
-                  General inquiries via joshuaisiko@gmail.com (Dr. Samuel Okodi, related infrastructure lead)
+                  General inquiries via joshuaisiko@gmail.com
                 </Link>
               </div>
             </div>
           </div>
-          <div className="lg:col-span-4 md:col-span-12 col-span-12">
-            <h4 className="text-base text-midnight_text dark:text-white mb-6">Quick Links</h4>
-            <ul className="space-y-3">
-              {footerLinks.slice(0, 5).map((item, index) => (
-                <li key={index}>
-                  <Link
-                    href="#"
-                    className="text-sm text-muted dark:text-white/60 hover:text-primary dark:hover:text-primary transition-colors"
-                  >
-                    {item.link}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <div className="lg:col-span-3 md:col-span-12 col-span-12">
+            <h5 className="text-sm text-midnight_text dark:text-white mb-4 font-semibold">
+              Quick Links
+            </h5>
+            <div className="flex flex-col gap-3">
+              <Link href="/" className="text-sm text-muted dark:text-white/60 hover:text-primary! transition-colors">
+                Home
+              </Link>
+              <Link href="/events" className="text-sm text-muted dark:text-white/60 hover:text-primary! transition-colors">
+                Events
+              </Link>
+              <Link href="/resources" className="text-sm text-muted dark:text-white/60 hover:text-primary! transition-colors">
+                Resources
+              </Link>
+              <Link href="#" className="text-sm text-muted dark:text-white/60 hover:text-primary! transition-colors">
+                About Us
+              </Link>
+              <Link href="#" className="text-sm text-muted dark:text-white/60 hover:text-primary! transition-colors">
+                Contact
+              </Link>
+            </div>
+          </div>
+          <div className="lg:col-span-3 md:col-span-12 col-span-12">
+            <h5 className="text-sm text-midnight_text dark:text-white mb-4 font-semibold">
+              Follow Us
+            </h5>
+            <div className="flex flex-col gap-3">
+              <Link href="#" className="text-sm text-muted dark:text-white/60 hover:text-primary! transition-colors flex items-center gap-2">
+                <Icon icon="ri:facebook-fill" width="16" height="16" />
+                Facebook
+              </Link>
+              <Link href="#" className="text-sm text-muted dark:text-white/60 hover:text-primary! transition-colors flex items-center gap-2">
+                <Icon icon="mdi:instagram" width="16" height="16" />
+                Instagram
+              </Link>
+              <Link href="#" className="text-sm text-muted dark:text-white/60 hover:text-primary! transition-colors flex items-center gap-2">
+                <Icon icon="ri:linkedin-fill" width="16" height="16" />
+                LinkedIn
+              </Link>
+              <Link href="#" className="text-sm text-muted dark:text-white/60 hover:text-primary! transition-colors flex items-center gap-2">
+                <Icon icon="line-md:twitter-x-alt" width="16" height="16" />
+                Twitter
+              </Link>
+            </div>
           </div>
         </div>
       </div>

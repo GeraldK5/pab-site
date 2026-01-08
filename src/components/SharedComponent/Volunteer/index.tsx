@@ -1,21 +1,24 @@
 "use client"
 
+import { useRouter } from "next/navigation";
 import { useContext } from "react";
 
-const Volunteer = () => {
+const MoreInfo = () => {
+    const router = useRouter();
     return (
-        <section className="lg:py-28 py-16 bg-[url('/images/background/volunteer-bg.jpg')] bg-no-repeat bg-cover overflow-hidden">
-            <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4">
+        <section className="lg:py-28 py-16 bg-[url('/images/background/pab-team2.png')] bg-no-repeat bg-cover overflow-hidden relative">
+            <div className="absolute inset-0 bg-black/20"></div>
+            <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4 relative z-10">
                 <div className="text-center">
                     <h2 className="text-3xl font-medium text-white mb-6">
-                        Become a volunteer
+                        We Accelerate Wealth Creation
                     </h2>
                     <p className="text-base text-white lg:max-w-60% mx-auto mb-6">
-                        Join our mission to make a positive impact! As a volunteer, you’ll work directly with communities, bring hope, and help create lasting change.
+                        Our focus is on innovations for increased output per unit input at variety or breed development, raw material production, and processing in the priority value chains of Cocoa, Coffee, Banana, Cassava, Sweet Potato, Dairy, Poultry and Fish.
                     </p>
                     <div className="flex justify-center ">
-                        <button onClick={() => { }} className="text-white rounded-md bg-linear-to-r text-sm font-semibold from-error to-warning px-7 py-4 hover:from-transparent hover:to-transparent border border-transparent hover:border-error hover:text-error">
-                            Donate now
+                        <button onClick={() => router.push('/events')} className="text-white rounded-md text-sm font-semibold border border-primary px-7 py-4 hover:bg-primary transition-all duration-300">
+                            View News and Updates
                         </button>
                     </div>
                 </div>
@@ -24,4 +27,4 @@ const Volunteer = () => {
     )
 }
 
-export default Volunteer;
+export default MoreInfo;

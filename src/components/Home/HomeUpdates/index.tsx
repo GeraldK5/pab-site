@@ -48,12 +48,12 @@ const HomeUpdates = () => {
                             <iframe
                                 width="100%"
                                 height="100%"
-                                src="https://www.youtube.com/watch?v=9-fp0Av8D1w"
+                                src="https://www.youtube.com/embed/5P1362K5WAU?si=rfpeVXhw2xj-a2q-"
                                 title="YouTube video player"
                                 frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowFullScreen
-                                className="rounded-sm"
+                                className="rounded-lg"
                             ></iframe>
                         </div>
                     </div>

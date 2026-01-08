@@ -122,10 +122,11 @@ export const Eventdata: {
   slug: string;
   content: {
     header: string | null;
-    type: "html" | "pdf" | "doc";
+    type: "html" | "pdf" | "doc" | "url";
     htmlContent: string | null;
     pdfContent: string | null;
     docContent: string | null;
+    url: string | null;
     footer: string | null;
   } | null;
 }[] = [
@@ -209,7 +210,7 @@ export const Eventdata: {
       content: null,
     },
     {
-      image: "/images/event-images/Busoga-Strategic-Plan-3.jpg",
+      image: "/images/event-images/Busoga-Strategic-Plan-7.jpg",
       gallery: [
         "/images/event-images/Busoga-Strategic-Plan-1.jpeg",
         "/images/event-images/Busoga-Strategic-Plan-2.jpeg",
@@ -217,6 +218,7 @@ export const Eventdata: {
         "/images/event-images/Busoga-Strategic-Plan-4.jpeg",
         "/images/event-images/Busoga-Strategic-Plan-5.jpeg",
         "/images/event-images/Busoga-Strategic-Plan-6.jpeg",
+        "/images/event-images/Busoga-Strategic-Plan-7.jpg",
       ],
       title: "Support the completion of the think tank session for drafting the Busoga sub-region strategic plan for accelerated wealth creation",
       isFeatured: true,
@@ -230,10 +232,11 @@ export const Eventdata: {
       detail: null,
       content: {
         header: null,
-        type: "html",
-        htmlContent: "/docs/busoga-strategic-plan-docs/progress-plan-doc.html",
+        type: "url",
+        htmlContent: null,
         pdfContent: null,
         docContent: null,
+        url: 'https://docs.google.com/document/d/e/2PACX-1vQhHvNUpB5G1DNxS9vRQKpA_f4kVhgF2ZZcHy1Iu1bfBio-2YBSp8V5jx7HdkUpbQ/pub?embedded=true',
         footer: `GET INVOLVED IN THE ONLINE CONSULTATIONS<br/><br/>
                   <strong>NOTE:</strong> This strategic plan is at the consultative stage of the development process. As you wait to meet you physically, give us your feedback towards the development of the final plan by 
                   <a href="#" class="text-primary underline font-semibold">CLICKING HERE</a> 
@@ -340,25 +343,6 @@ export const Eventdata: {
       detail: null,
       content: null,
     },
-    {
-      image: "/images/event/event-1.jpg",
-      gallery: [
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
-        "/images/event/event-1.jpg",
-      ],
-      title: "Support the completion of the think tank session for drafting the Busoga sub-region strategic plan for accelerated wealth creation from 14th - 21st December, 2025",
-      isFeatured: true,
-      slug: "busoga-strategic-plan-think-tank",
-      text: "Think tank session finalizing the strategic planning framework for Busoga's wealth creation initiatives.",
-      date: "2026-01-04",
-      location: "Jinja Nile Village Hotel",
-      type: "Past",
-      duration: "4th to 9th Jan 2026",
-      category: "Strategic Planning",
-      detail: null,
-      content: null,
-    }
   ];
 
 

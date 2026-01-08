@@ -2,6 +2,7 @@
 
 import { useContext, useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Slider from "react-slick";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Eventdata } from "@/app/data/data";
@@ -70,10 +71,12 @@ const Hero = () => {
                     </p>
                   </div>
                   {/* Read More Link */}
-                  <div className="flex items-end gap-2 mt-4">
-                    <span className="text-primary font-medium text-sm">Read More</span>
-                    <Icon icon="solar:arrow-right-linear" className="text-primary text-base" />
-                  </div>
+                  <Link href={`/events/event-details?event=${event.slug}`}>
+                    <div className="flex items-end gap-2 mt-4 cursor-pointer hover:opacity-80 transition-opacity">
+                      <span className="text-primary font-medium text-sm">Read More</span>
+                      <Icon icon="solar:arrow-right-linear" className="text-primary text-base" />
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
