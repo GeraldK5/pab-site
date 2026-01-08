@@ -207,7 +207,7 @@ const EventDetails: FC<EventProps> = ({
         {((gallery && gallery.length > 0) || video) && (
           <div className="mt-12">
             <h3 className="text-2xl font-medium text-darktext mb-6">Activity Gallery</h3>
-            
+
             {/* If video exists, show 2-column layout with 2x2 gallery and video */}
             {video ? (
               <div className="grid lg:grid-cols-2 grid-cols-1 gap-6">
@@ -219,11 +219,10 @@ const EventDetails: FC<EventProps> = ({
                       <button
                         onClick={handlePreviousGallery}
                         disabled={currentIndex === 0}
-                        className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${
-                          currentIndex === 0
+                        className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${currentIndex === 0
                             ? "opacity-50 cursor-not-allowed"
                             : "hover:bg-primary hover:text-white"
-                        }`}
+                          }`}
                         style={{ left: '-20px' }}
                       >
                         <Icon icon="solar:arrow-left-linear" width="24" height="24" />
@@ -232,8 +231,8 @@ const EventDetails: FC<EventProps> = ({
 
                     <div className="grid grid-cols-2 gap-4">
                       {gallery.slice(currentIndex, currentIndex + imagesPerView).map((imgSrc, index) => (
-                        <div 
-                          key={currentIndex + index} 
+                        <div
+                          key={currentIndex + index}
                           className="relative overflow-hidden rounded-lg group aspect-square cursor-pointer"
                           onClick={() => openImageModal(imgSrc)}
                         >
@@ -258,11 +257,10 @@ const EventDetails: FC<EventProps> = ({
                       <button
                         onClick={handleNextGallery}
                         disabled={currentIndex >= maxIndex}
-                        className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${
-                          currentIndex >= maxIndex
+                        className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${currentIndex >= maxIndex
                             ? "opacity-50 cursor-not-allowed"
                             : "hover:bg-primary hover:text-white"
-                        }`}
+                          }`}
                         style={{ right: '-20px' }}
                       >
                         <Icon icon="solar:arrow-right-linear" width="24" height="24" />
@@ -293,11 +291,10 @@ const EventDetails: FC<EventProps> = ({
                     <button
                       onClick={handlePreviousGallery}
                       disabled={currentIndex === 0}
-                      className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${
-                        currentIndex === 0
+                      className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${currentIndex === 0
                           ? "opacity-50 cursor-not-allowed"
                           : "hover:bg-primary hover:text-white"
-                      }`}
+                        }`}
                       style={{ left: '-20px' }}
                     >
                       <Icon icon="solar:arrow-left-linear" width="24" height="24" />
@@ -307,8 +304,8 @@ const EventDetails: FC<EventProps> = ({
                   {/* Horizontal grid layout - 6 images */}
                   <div className="grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4">
                     {gallery.slice(currentIndex, currentIndex + imagesPerView).map((imgSrc, index) => (
-                      <div 
-                        key={currentIndex + index} 
+                      <div
+                        key={currentIndex + index}
                         className="relative overflow-hidden rounded-lg group aspect-square cursor-pointer"
                         onClick={() => openImageModal(imgSrc)}
                       >
@@ -333,11 +330,10 @@ const EventDetails: FC<EventProps> = ({
                     <button
                       onClick={handleNextGallery}
                       disabled={currentIndex >= maxIndex}
-                      className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${
-                        currentIndex >= maxIndex
+                      className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${currentIndex >= maxIndex
                           ? "opacity-50 cursor-not-allowed"
                           : "hover:bg-primary hover:text-white"
-                      }`}
+                        }`}
                       style={{ right: '-20px' }}
                     >
                       <Icon icon="solar:arrow-right-linear" width="24" height="24" />
@@ -406,15 +402,33 @@ const EventDetails: FC<EventProps> = ({
 
             {/* URL Content - Iframe */}
             {content.type === "url" && content.url && (
-              <div className="w-full h-[600px] sm:h-[700px] md:h-[800px] lg:h-screen">
-                <iframe
-                  src={content.url}
-                  className="w-full h-full rounded-lg border border-border dark:border-dark_border"
-                  title="Content"
-                  allow="fullscreen"
-                  style={{ minHeight: '600px' }}
-                ></iframe>
-              </div>
+              <>
+                {/* Mobile: Show link */}
+                <div className="block md:hidden p-6 border border-border dark:border-dark_border rounded-lg text-start">
+                  <p className="mb-4 text-muted dark:text-white/60">
+                    For the best viewing experience on mobile, please open the document directly:
+                  </p>
+                  <a
+                    href={content.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                  >
+                    Open Document
+                  </a>
+                </div>
+
+                {/* Desktop: Show iframe */}
+                <div className="hidden md:block w-full h-[700px] lg:h-screen">
+                  <iframe
+                    src={content.url}
+                    className="w-full h-full rounded-lg border border-border dark:border-dark_border"
+                    title="Content"
+                    allow="fullscreen"
+                    style={{ minHeight: '600px' }}
+                  ></iframe>
+                </div>
+              </>
             )}
 
             {content.footer && (
