@@ -24,6 +24,7 @@ const Events = () => {
         gallery={item?.gallery}
         video={item?.video}
         content={item?.content}
+        feedback={item?.feedback}
       />
       <MoreInfo />
     </>

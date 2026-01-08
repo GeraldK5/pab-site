@@ -3,9 +3,18 @@
 import { getResources } from "@/app/data/data";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
+import { useState } from "react";
+
+const ITEMS_PER_PAGE = 5;
 
 export default function ResourcesPage() {
     const resources = getResources();
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const totalPages = Math.ceil(resources.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const paginatedResources = resources.slice(startIndex, endIndex);
 
     return (
         <section className="sm:mt-28 pt-28 sm:pb-28 pb-12 dark:bg-dark">
@@ -22,20 +31,20 @@ export default function ResourcesPage() {
                 <div className="overflow-x-auto rounded-lg shadow-lg">
                     <table className="w-full border-collapse">
                         <thead>
-                            <tr className="bg-primary text-white">
-                                <th className="px-6 py-4 text-left font-semibold">Title</th>
-                                <th className="px-6 py-4 text-left font-semibold">Description</th>
-                                <th className="px-6 py-4 text-left font-semibold">Date</th>
-                                <th className="px-6 py-4 text-center font-semibold">Download</th>
+                            <tr className="border-b border-border dark:border-dark_border bg-gray-50 dark:bg-gray-800">
+                                <th className="px-6 py-4 text-left font-semibold text-darktext dark:text-white">Title</th>
+                                <th className="px-6 py-4 text-left font-semibold text-darktext dark:text-white">Description</th>
+                                <th className="px-6 py-4 text-left font-semibold text-darktext dark:text-white">Date</th>
+                                <th className="px-6 py-4 text-center font-semibold text-darktext dark:text-white">Download</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {resources.map((resource, index) => (
+                            {paginatedResources.map((resource, index) => (
                                 <tr
                                     key={index}
                                     className={`border-b border-border dark:border-dark_border transition-colors ${index % 2 === 0
-                                            ? "bg-white dark:bg-gray-900"
-                                            : "bg-gray-50 dark:bg-gray-800"
+                                        ? "bg-white dark:bg-gray-900"
+                                        : "bg-gray-50 dark:bg-gray-800"
                                         } hover:bg-gray-100 dark:hover:bg-gray-700`}
                                 >
                                     <td className="px-6 py-4 font-medium text-darktext dark:text-white">
@@ -66,6 +75,40 @@ export default function ResourcesPage() {
                         </tbody>
                     </table>
                 </div>
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                    <div className="flex justify-center items-center gap-2 mt-8">
+                        <button
+                            onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                            disabled={currentPage === 1}
+                            className="px-3 py-2 border border-border dark:border-dark_border rounded text-darktext dark:text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                        >
+                            <Icon icon="solar:arrow-left-linear" width="18" height="18" />
+                        </button>
+
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                            <button
+                                key={page}
+                                onClick={() => setCurrentPage(page)}
+                                className={`px-3 py-2 rounded transition-colors ${currentPage === page
+                                        ? "bg-primary text-white"
+                                        : "border border-border dark:border-dark_border text-darktext dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
+                                    }`}
+                            >
+                                {page}
+                            </button>
+                        ))}
+
+                        <button
+                            onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                            disabled={currentPage === totalPages}
+                            className="px-3 py-2 border border-border dark:border-dark_border rounded text-darktext dark:text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                        >
+                            <Icon icon="solar:arrow-right-linear" width="18" height="18" />
+                        </button>
+                    </div>
+                )}
 
                 {/* Empty State */}
                 {resources.length === 0 && (

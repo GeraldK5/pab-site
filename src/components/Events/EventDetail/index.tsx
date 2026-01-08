@@ -23,6 +23,11 @@ interface EventProps {
   duration?: string;
   type?: string;
   entrants?: string;
+  feedback?: {
+    allowFeedback: boolean;
+    type: "url";
+    url?: string;
+  } | null;
   image?: any;
   gallery?: string[];
   video?: string;
@@ -41,7 +46,8 @@ const EventDetails: FC<EventProps> = ({
   image,
   gallery,
   video,
-  content
+  content,
+  feedback
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -54,7 +60,7 @@ const EventDetails: FC<EventProps> = ({
 
   // Load HTML content
   useEffect(() => {
-    console.log("Content:", content);
+    console.log("Feedback:", feedback);
     if (content?.type === "html" && content?.htmlContent) {
       setLoadingHtml(true);
       fetch(content.htmlContent)
@@ -327,6 +333,21 @@ const EventDetails: FC<EventProps> = ({
                 dangerouslySetInnerHTML={{ __html: content.footer }}
               />
             )}
+          </div>
+        )}
+
+        {/* Feedback Form Section */}
+        {feedback?.allowFeedback && feedback?.type === "url" && feedback?.url && (
+          <div className="mt-16">
+            <h3 className="text-2xl font-medium text-darktext mb-6">Feedback</h3>
+            <div className="w-full rounded-lg border border-border dark:border-dark_border overflow-hidden">
+              <iframe
+                src={feedback.url}
+                className="w-full min-h-screen rounded-lg"
+                title="Event Feedback Form"
+                allow="fullscreen"
+              ></iframe>
+            </div>
           </div>
         )}
 

@@ -120,6 +120,11 @@ export const Eventdata: {
   category: string;
   detail?: string | null;
   slug: string;
+  feedback?: {
+    allowFeedback: boolean;
+    type: "url";
+    url?: string;
+  } | null;
   content: {
     header: string | null;
     type: "html" | "pdf" | "doc" | "url";
@@ -222,6 +227,11 @@ export const Eventdata: {
       ],
       title: "Support the completion of the think tank session for drafting the Busoga sub-region strategic plan for accelerated wealth creation",
       isFeatured: true,
+      feedback: {
+        allowFeedback: true,
+        type: 'url',
+        url: 'https://docs.google.com/forms/d/e/1FAIpQLSczVmLUE3g-75wL3wy2hC_RspgizKiFkHPYirCyBAbMZ1RRgw/viewform?usp=publish-editor'
+      },
       slug: "busoga-strategic-plan-session",
       text: "Think tank session finalizing the Busoga sub-region's strategic plan for wealth creation.",
       date: "2026-01-04",
@@ -239,7 +249,7 @@ export const Eventdata: {
         url: 'https://docs.google.com/document/d/e/2PACX-1vQhHvNUpB5G1DNxS9vRQKpA_f4kVhgF2ZZcHy1Iu1bfBio-2YBSp8V5jx7HdkUpbQ/pub?embedded=true',
         footer: `GET INVOLVED IN THE ONLINE CONSULTATIONS<br/><br/>
                   <strong>NOTE:</strong> This strategic plan is at the consultative stage of the development process. As you wait to meet you physically, give us your feedback towards the development of the final plan by 
-                  <a href="#" class="text-primary underline font-semibold">CLICKING HERE</a> 
+                  <a href="https://docs.google.com/forms/d/e/1FAIpQLSczVmLUE3g-75wL3wy2hC_RspgizKiFkHPYirCyBAbMZ1RRgw/viewform?usp=header" class="text-primary underline font-semibold">CLICKING HERE</a> 
                   to submit your question/comment.
                   `
       }
