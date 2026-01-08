@@ -121,9 +121,12 @@ export const Eventdata: {
   detail?: string | null;
   slug: string;
   content: {
-    header: string;
-    htmlContent: string;
-    footer: string;
+    header: string | null;
+    type: "html" | "pdf" | "doc";
+    htmlContent: string | null;
+    pdfContent: string | null;
+    docContent: string | null;
+    footer: string | null;
   } | null;
 }[] = [
     {
@@ -226,8 +229,11 @@ export const Eventdata: {
       category: "Strategic Planning",
       detail: null,
       content: {
-        header: "",
-        htmlContent: "docs/busoga/busoga-strategic-plan-docs/progress-plan-doc.html",
+        header: null,
+        type: "html",
+        htmlContent: "/docs/busoga-strategic-plan-docs/progress-plan-doc.html",
+        pdfContent: null,
+        docContent: null,
         footer: `GET INVOLVED IN THE ONLINE CONSULTATIONS<br/><br/>
                   <strong>NOTE:</strong> This strategic plan is at the consultative stage of the development process. As you wait to meet you physically, give us your feedback towards the development of the final plan by 
                   <a href="#" class="text-primary underline font-semibold">CLICKING HERE</a> 

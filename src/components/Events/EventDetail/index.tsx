@@ -1,8 +1,17 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { format } from "date-fns";
 import { Icon } from "@iconify/react";
+
+interface ContentType {
+  header: string | null;
+  type: "html" | "pdf" | "doc";
+  htmlContent: string | null;
+  pdfContent: string | null;
+  docContent: string | null;
+  footer: string | null;
+}
 
 interface EventProps {
   title?: string;
@@ -16,6 +25,7 @@ interface EventProps {
   image?: any;
   gallery?: string[];
   video?: string;
+  content?: ContentType | null;
 }
 
 const EventDetails: FC<EventProps> = ({
@@ -29,27 +39,32 @@ const EventDetails: FC<EventProps> = ({
   entrants,
   image,
   gallery,
-  video
+  video,
+  content
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  
+  const [htmlContent, setHtmlContent] = useState<string>("");
+  const [loadingHtml, setLoadingHtml] = useState(false);
+
   const formattedDate = eventdate
     ? format(new Date(eventdate), "MMM dd, yyyy")
     : "Date not available";
 
-  const imagesPerView = 4;
-  const totalImages = gallery?.length || 0;
-  const maxIndex = Math.max(0, totalImages - imagesPerView);
-
-  const handlePreviousGallery = () => {
-    setCurrentIndex((prev) => Math.max(0, prev - 1));
-  };
-
-  const handleNextGallery = () => {
-    setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
-  };
+  // Load HTML content
+  useEffect(() => {
+    console.log("Content:", content);
+    if (content?.type === "html" && content?.htmlContent) {
+      setLoadingHtml(true);
+      fetch(content.htmlContent)
+        .then((res) => res.text())
+        .then((data) => {
+          setHtmlContent(data);
+          setLoadingHtml(false);
+        })
+        .catch(() => setLoadingHtml(false));
+    }
+  }, [content]);
 
   const handlePlayVideo = () => {
     setIsPlaying(true);
@@ -86,65 +101,40 @@ const EventDetails: FC<EventProps> = ({
                 </h3>
               </div>
             </div>
-            <h2 className="text-4xl font-medium text-darktext">{title}</h2>
             <p className="text-muted dark:text-white/60 text-base my-8">{detail}</p>
           </div>
-          
+
           <div className="lg:col-span-3 md:col-span-5 sm:col-span-6 col-span-12 lg:mt-0 mt-8">
             <h4 className="text-darktext text-lg font-medium mb-6">Info</h4>
             <div className="pb-6 border-b border-border mb-6 dark:border-dark_border">
               <table>
                 <tbody>
-                <tr className="">
-                  <td>
-                    <h5 className="text-muted dark:text-white/60 text-base pb-4">Category:</h5>
-                  </td>
-                  <td>
-                    <p className="text-muted dark:text-white/60 text-base pb-4 pl-4">{category}</p>
-                  </td>
-                </tr>
-                <tr className="">
-                  <td>
-                    <h5 className="text-muted dark:text-white/60 text-base pb-4">Location:</h5>
-                  </td>
-                  <td>
-                    <p className="text-muted dark:text-white/60 text-base pb-4 pl-4">{location}</p>
-                  </td>
-                </tr>
-                <tr className="">
-                  <td>
-                    <h5 className="text-muted dark:text-white/60 text-base pb-4">Date:</h5>
-                  </td>
-                  <td>
-                    <p className="text-muted dark:text-white/60 text-base pb-4 pl-4">
-                      {formattedDate}
-                    </p>
-                  </td>
-                </tr>
-                <tr className="">
-                  <td>
-                    <h5 className="text-muted dark:text-white/60 text-base pb-4">Duration:</h5>
-                  </td>
-                  <td>
-                    <p className="text-muted dark:text-white/60 text-base pb-4 pl-4">{duration}</p>
-                  </td>
-                </tr>
-                <tr className="">
-                  <td>
-                    <h5 className="text-muted dark:text-white/60 text-base pb-4">Type:</h5>
-                  </td>
-                  <td>
-                    <p className="text-muted dark:text-white/60 text-base pb-4 pl-4">{type}</p>
-                  </td>
-                </tr>
-                <tr className="">
-                  <td>
-                    <h5 className="text-muted dark:text-white/60 text-base pb-4">Entrants:</h5>
-                  </td>
-                  <td>
-                    <p className="text-muted dark:text-white/60 text-base pb-4 pl-4">{entrants}</p>
-                  </td>
-                </tr>
+                  <tr className="">
+                    <td>
+                      <h5 className="text-muted dark:text-white/60 text-base pb-4">Location:</h5>
+                    </td>
+                    <td>
+                      <p className="text-muted dark:text-white/60 text-base pb-4 pl-4">{location}</p>
+                    </td>
+                  </tr>
+                  <tr className="">
+                    <td>
+                      <h5 className="text-muted dark:text-white/60 text-base pb-4">Date:</h5>
+                    </td>
+                    <td>
+                      <p className="text-muted dark:text-white/60 text-base pb-4 pl-4">
+                        {formattedDate}
+                      </p>
+                    </td>
+                  </tr>
+                  <tr className="">
+                    <td>
+                      <h5 className="text-muted dark:text-white/60 text-base pb-4">Duration:</h5>
+                    </td>
+                    <td>
+                      <p className="text-muted dark:text-white/60 text-base pb-4 pl-4">{duration}</p>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -196,76 +186,46 @@ const EventDetails: FC<EventProps> = ({
         {((gallery && gallery.length > 0) || video) && (
           <div className="mt-12">
             <h3 className="text-2xl font-medium text-darktext mb-6">Activity Gallery</h3>
-            <div className="grid lg:grid-cols-2 grid-cols-1 gap-6">
-              {/* Left Side - 4 Images in 2x2 Grid with Navigation */}
-              {gallery && gallery.length > 0 && (
-                <div className="relative">
-                  {/* Left Arrow */}
-                  {totalImages > imagesPerView && (
-                    <button
-                      onClick={handlePreviousGallery}
-                      disabled={currentIndex === 0}
-                      className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${
-                        currentIndex === 0
-                          ? "opacity-50 cursor-not-allowed"
-                          : "hover:bg-primary hover:text-white"
-                      }`}
-                      style={{ left: '-20px' }}
-                    >
-                      <Icon icon="solar:arrow-left-linear" width="24" height="24" />
-                    </button>
-                  )}
 
-                  <div className="grid grid-cols-2 gap-4">
-                    {gallery.slice(currentIndex, currentIndex + imagesPerView).map((imgSrc, index) => (
-                      <div 
-                        key={currentIndex + index} 
-                        className="relative overflow-hidden rounded-lg group aspect-square cursor-pointer"
-                        onClick={() => openImageModal(imgSrc)}
-                      >
-                        <Image
-                          src={imgSrc}
-                          alt={`Gallery image ${currentIndex + index + 1}`}
-                          width={300}
-                          height={300}
-                          quality={100}
-                          className="w-full h-full object-cover group-hover:scale-110 duration-300 transition-transform"
-                        />
-                        {/* Zoom indicator on hover */}
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                          <Icon icon="solar:eye-bold" width="32" height="32" className="text-white" />
-                        </div>
+            {/* Gallery Images - Horizontal Layout */}
+            {gallery && gallery.length > 0 && (
+              <div className="mb-8">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 overflow-x-auto pb-4">
+                  {gallery.map((imgSrc, index) => (
+                    <div
+                      key={index}
+                      className="relative overflow-hidden rounded-lg group aspect-square cursor-pointer flex-shrink-0"
+                      onClick={() => openImageModal(imgSrc)}
+                    >
+                      <Image
+                        src={imgSrc}
+                        alt={`Gallery image ${index + 1}`}
+                        width={200}
+                        height={200}
+                        quality={100}
+                        className="w-full h-full object-cover group-hover:scale-110 duration-300 transition-transform"
+                      />
+                      {/* Zoom indicator on hover */}
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <Icon icon="solar:eye-bold" width="32" height="32" className="text-white" />
                       </div>
-                    ))}
-                  </div>
-
-                  {/* Right Arrow */}
-                  {totalImages > imagesPerView && (
-                    <button
-                      onClick={handleNextGallery}
-                      disabled={currentIndex >= maxIndex}
-                      className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${
-                        currentIndex >= maxIndex
-                          ? "opacity-50 cursor-not-allowed"
-                          : "hover:bg-primary hover:text-white"
-                      }`}
-                      style={{ right: '-20px' }}
-                    >
-                      <Icon icon="solar:arrow-right-linear" width="24" height="24" />
-                    </button>
-                  )}
+                    </div>
+                  ))}
                 </div>
-              )}
+              </div>
+            )}
 
-              {/* Right Side - Video Card */}
-              {video && (
+            {/* Video Section */}
+            {video && (
+              <div className="mb-8">
+                <h4 className="text-lg font-medium text-darktext mb-4">Video</h4>
                 <div className="flex items-center">
                   {!isPlaying ? (
-                    <div className="relative rounded-lg overflow-hidden w-full h-full min-h-[300px] group cursor-pointer" onClick={handlePlayVideo}>
+                    <div className="relative rounded-lg overflow-hidden w-full max-w-2xl group cursor-pointer" onClick={() => setIsPlaying(true)}>
                       {/* Video thumbnail - using first frame or poster */}
                       <video
                         src={video}
-                        className="w-full h-full object-cover"
+                        className="w-full h-auto object-cover"
                         preload="metadata"
                       />
                       {/* Play button overlay */}
@@ -276,26 +236,90 @@ const EventDetails: FC<EventProps> = ({
                       </div>
                     </div>
                   ) : (
-                    <div className="relative rounded-lg overflow-hidden w-full h-full">
+                    <div className="relative rounded-lg overflow-hidden w-full max-w-2xl">
                       <video
                         src={video}
                         controls
                         autoPlay
-                        className="w-full h-full rounded-lg"
+                        className="w-full h-auto rounded-lg"
                       >
                         Your browser does not support the video tag.
                       </video>
                     </div>
                   )}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Content Section - Display based on content.type */}
+        {content && (
+          <div className="mt-16">
+            {content.header && (
+              <h3 className="text-2xl font-medium text-darktext mb-6">{content.header}</h3>
+            )}
+
+            {/* HTML Content */}
+            {content.type === "html" && content.htmlContent && (
+              <div>
+                {loadingHtml ? (
+                  <div className="flex items-center justify-center py-12">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                  </div>
+                ) : (
+                  <div
+                    className="prose prose-lg max-w-none dark:prose-invert"
+                    dangerouslySetInnerHTML={{ __html: htmlContent }}
+                  />
+                )}
+              </div>
+            )}
+
+            {/* PDF Content */}
+            {content.type === "pdf" && content.pdfContent && (
+              <div className="border-2 border-primary rounded-lg p-8 text-center">
+                <Icon icon="solar:document-pdf-bold" width="64" height="64" className="text-primary mx-auto mb-4" />
+                <h4 className="text-lg font-medium text-darktext mb-4">PDF Document</h4>
+                <a
+                  href={content.pdfContent}
+                  download
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-secondary text-white font-medium rounded-md transition-colors duration-300"
+                >
+                  <Icon icon="solar:download-linear" width="20" height="20" />
+                  Download PDF
+                </a>
+              </div>
+            )}
+
+            {/* DOC Content */}
+            {content.type === "doc" && content.docContent && (
+              <div className="border-2 border-primary rounded-lg p-8 text-center">
+                <Icon icon="solar:document-bold" width="64" height="64" className="text-primary mx-auto mb-4" />
+                <h4 className="text-lg font-medium text-darktext mb-4">Document</h4>
+                <a
+                  href={content.docContent}
+                  download
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-secondary text-white font-medium rounded-md transition-colors duration-300"
+                >
+                  <Icon icon="solar:download-linear" width="20" height="20" />
+                  Download Document
+                </a>
+              </div>
+            )}
+
+            {content.footer && (
+              <div
+                className="mt-8 p-6 bg-gray-50 dark:bg-gray-900 rounded-lg border border-border dark:border-dark_border"
+                dangerouslySetInnerHTML={{ __html: content.footer }}
+              />
+            )}
           </div>
         )}
 
         {/* Image Modal */}
         {selectedImage && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm animate-fadeIn p-4"
             onClick={closeImageModal}
           >
@@ -305,7 +329,7 @@ const EventDetails: FC<EventProps> = ({
             >
               <Icon icon="solar:close-circle-bold" width="40" height="40" />
             </button>
-            <div 
+            <div
               className="relative max-w-5xl max-h-[90vh] animate-scaleIn"
               onClick={(e) => e.stopPropagation()}
             >

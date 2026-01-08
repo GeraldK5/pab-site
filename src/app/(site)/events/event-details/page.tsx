@@ -1,11 +1,12 @@
 "use client";
 import Volunteer from "@/components/SharedComponent/Volunteer";
 import EventDetails from "@/components/Events/EventDetail";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Eventdata } from "@/app/data/data";
 
 const Events = () => {
-  const { slug } = useParams();
+  const searchParams = useSearchParams();
+  const slug = searchParams.get("event");
 
   const item = Eventdata.find((item) => item.slug === slug);
   return (
@@ -22,6 +23,7 @@ const Events = () => {
         image={item?.image}
         gallery={item?.gallery}
         video={item?.video}
+        content={item?.content}
       />
       <Volunteer />
     </>

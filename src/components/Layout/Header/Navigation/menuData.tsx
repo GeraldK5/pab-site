@@ -4,18 +4,18 @@ export const headerData: HeaderItem[] = [
   { label: "Home", href: "/" },
   {
     label: "Events",
-    href: "#",
+    href: "/events",
     submenu: [
       { label: "Events list", href: "/events" },
       { label: "Events details", href: "/events/event-1" },
     ],
   },
   {
-    label: "Blog",
-    href: "#",
+    label: "Resources",
+    href: "/resources",
     submenu: [
-      { label: "Blog list", href: "/blog" },
-      { label: "Blog details", href: "/blog/blog_1" },
+      { label: "Resources list", href: "/resources" },
+      { label: "Resources details", href: "/resources/resource_1" },
     ],
   },
   { label: "Contact", href: "/contact" },
