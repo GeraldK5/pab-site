@@ -164,7 +164,7 @@ export const Eventdata: {
       category: "Calendar, Dontaions",
       detail:
         "Donec hendrerit, dui quis ultricies eleifend, ipsum sapien auctor ligula, vitae interdum augue metus nec sem. Pellentesque mollis ex risus, eget dignissim nibh fermentum in. Cras eu ipsum eget ante ullamcorper vehicula. Suspendisse non blandit mi.Mauris eu sapien urna. Fusce eu luctus augue, non vestibulum felis. Fusce sollicitudin porta augue non porta. Vivamus ullamcorper tristique nisi, in mattis elit porta vitae. Curabitur euismod lectus non maximus dictum. Vivamus luctus, eros at posuere",
-      video: "https://www.w3schools.com/html/mov_bbb.mp4",
+      video: "https://youtu.be/5P1362K5WAU",
     },
     {
       image: "/images/event/kibalo24.jpg",
@@ -207,7 +207,7 @@ export const Eventdata: {
       category: "Calendar, Dontaions",
       detail:
         "Donec hendrerit, dui quis ultricies eleifend, ipsum sapien auctor ligula, vitae interdum augue metus nec sem. Pellentesque mollis ex risus, eget dignissim nibh fermentum in. Cras eu ipsum eget ante ullamcorper vehicula. Suspendisse non blandit mi.Mauris eu sapien urna. Fusce eu luctus augue, non vestibulum felis. Fusce sollicitudin porta augue non porta. Vivamus ullamcorper tristique nisi, in mattis elit porta vitae. Curabitur euismod lectus non maximus dictum. Vivamus luctus, eros at posuere",
-      video: "https://www.w3schools.com/html/mov_bbb.mp4",
+      video: "https://youtu.be/5P1362K5WAU",
     },
     {
       image: "/images/event/kibalo7.jpg",
@@ -484,7 +484,7 @@ export const Eventdata: {
       category: "Calendar, Dontaions",
       detail:
         "Donec hendrerit, dui quis ultricies eleifend, ipsum sapien auctor ligula, vitae interdum augue metus nec sem. Pellentesque mollis ex risus, eget dignissim nibh fermentum in. Cras eu ipsum eget ante ullamcorper vehicula. Suspendisse non blandit mi.Mauris eu sapien urna. Fusce eu luctus augue, non vestibulum felis. Fusce sollicitudin porta augue non porta. Vivamus ullamcorper tristique nisi, in mattis elit porta vitae. Curabitur euismod lectus non maximus dictum. Vivamus luctus, eros at posuere",
-      video: "https://www.w3schools.com/html/mov_bbb.mp4",
+      video: "https://youtu.be/5P1362K5WAU",
     },
     {
       image: "/images/event/kibalo4.jpg",
@@ -509,7 +509,7 @@ export const Eventdata: {
       category: "Calendar, Dontaions",
       detail:
         "Donec hendrerit, dui quis ultricies eleifend, ipsum sapien auctor ligula, vitae interdum augue metus nec sem. Pellentesque mollis ex risus, eget dignissim nibh fermentum in. Cras eu ipsum eget ante ullamcorper vehicula. Suspendisse non blandit mi.Mauris eu sapien urna. Fusce eu luctus augue, non vestibulum felis. Fusce sollicitudin porta augue non porta. Vivamus ullamcorper tristique nisi, in mattis elit porta vitae. Curabitur euismod lectus non maximus dictum. Vivamus luctus, eros at posuere",
-      video: "https://www.w3schools.com/html/mov_bbb.mp4",
+      video: "https://youtu.be/5P1362K5WAU",
     },
     {
       image: "/images/event/kibalo5.jpg",
@@ -534,7 +534,7 @@ export const Eventdata: {
       category: "Calendar, Dontaions",
       detail:
         "Donec hendrerit, dui quis ultricies eleifend, ipsum sapien auctor ligula, vitae interdum augue metus nec sem. Pellentesque mollis ex risus, eget dignissim nibh fermentum in. Cras eu ipsum eget ante ullamcorper vehicula. Suspendisse non blandit mi.Mauris eu sapien urna. Fusce eu luctus augue, non vestibulum felis. Fusce sollicitudin porta augue non porta. Vivamus ullamcorper tristique nisi, in mattis elit porta vitae. Curabitur euismod lectus non maximus dictum. Vivamus luctus, eros at posuere",
-      video: "https://www.w3schools.com/html/mov_bbb.mp4",
+      video: "https://youtu.be/5P1362K5WAU",
     },
     {
       image: "/images/event/kibalo6.jpg",
@@ -558,7 +558,7 @@ export const Eventdata: {
       category: "Calendar, Dontaions",
       detail:
         "Donec hendrerit, dui quis ultricies eleifend, ipsum sapien auctor ligula, vitae interdum augue metus nec sem. Pellentesque mollis ex risus, eget dignissim nibh fermentum in. Cras eu ipsum eget ante ullamcorper vehicula. Suspendisse non blandit mi.Mauris eu sapien urna. Fusce eu luctus augue, non vestibulum felis. Fusce sollicitudin porta augue non porta. Vivamus ullamcorper tristique nisi, in mattis elit porta vitae. Curabitur euismod lectus non maximus dictum. Vivamus luctus, eros at posuere",
-      video: "https://www.w3schools.com/html/mov_bbb.mp4",
+      video: "https://youtu.be/5P1362K5WAU",
     },
   ];
 
