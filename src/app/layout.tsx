@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={montserrat.className}>
-        <NextTopLoader color="#FF4D7E" />
+        <NextTopLoader color="#FACC15" />
 
         <ThemeProvider
           attribute="class"

@@ -21,13 +21,13 @@ const EventCard = ({ event }: { event: Event }) => {
     const { title, image, text, date, slug } = event;
     return (
         <>
-            <Link href={`/events/${slug}`} className="group flex items-center gap-8">
+            <Link href={`/events/event-details?event=${slug}`} className="group flex items-start gap-8">
                 <div className="overflow-hidden rounded-sm">
                     <Image
                         src={image}
                         alt="image"
-                        width={150}
-                        height={100}
+                        width={200}
+                        height={200}
                         className="group-hover:scale-110 duration-300"
                     />
                 </div>

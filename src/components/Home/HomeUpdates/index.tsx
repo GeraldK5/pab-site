@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Eventdata, getResources } from "@/app/data/data";
-import BlogCard from "./EventCard";
+import EventCard from "./EventCard";
 
 const HomeUpdates = () => {
     const events = Eventdata
@@ -64,13 +64,13 @@ const HomeUpdates = () => {
                             <h4 className="text-base mb-0">
                                 News, Updates and Activities
                             </h4>
-                            <Link href="/events" className="text-error hover:text-warning text-base">
+                            <Link href="/events" className="text-yellow-400 hover:text-primary text-base">
                                 View all
                             </Link>
                         </div>
                         {events.map((event, i) => (
                             <div key={i} className="lg:mb-10 mb-6" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                                <BlogCard event={event} />
+                                <EventCard event={event} />
                             </div>
                         ))}
                     </div>

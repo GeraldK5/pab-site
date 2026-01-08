@@ -59,7 +59,8 @@ const EventDetails: FC<EventProps> = ({
     ? format(new Date(eventdate), "MMM dd, yyyy")
     : "Date not available";
 
-  const imagesPerView = 4;
+  // Determine images per view based on whether video exists
+  const imagesPerView = video ? 4 : 6;
   const totalImages = gallery?.length || 0;
   const maxIndex = Math.max(0, totalImages - imagesPerView);
 
@@ -207,9 +208,85 @@ const EventDetails: FC<EventProps> = ({
           <div className="mt-12">
             <h3 className="text-2xl font-medium text-darktext mb-6">Activity Gallery</h3>
             
-            <div className="grid lg:grid-cols-2 grid-cols-1 gap-6">
-              {/* Left Side - 4 Images in 2x2 Grid with Navigation */}
-              {gallery && gallery.length > 0 && (
+            {/* If video exists, show 2-column layout with 2x2 gallery and video */}
+            {video ? (
+              <div className="grid lg:grid-cols-2 grid-cols-1 gap-6">
+                {/* Left Side - 4 Images in 2x2 Grid with Navigation */}
+                {gallery && gallery.length > 0 && (
+                  <div className="relative">
+                    {/* Left Arrow */}
+                    {totalImages > imagesPerView && (
+                      <button
+                        onClick={handlePreviousGallery}
+                        disabled={currentIndex === 0}
+                        className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${
+                          currentIndex === 0
+                            ? "opacity-50 cursor-not-allowed"
+                            : "hover:bg-primary hover:text-white"
+                        }`}
+                        style={{ left: '-20px' }}
+                      >
+                        <Icon icon="solar:arrow-left-linear" width="24" height="24" />
+                      </button>
+                    )}
+
+                    <div className="grid grid-cols-2 gap-4">
+                      {gallery.slice(currentIndex, currentIndex + imagesPerView).map((imgSrc, index) => (
+                        <div 
+                          key={currentIndex + index} 
+                          className="relative overflow-hidden rounded-lg group aspect-square cursor-pointer"
+                          onClick={() => openImageModal(imgSrc)}
+                        >
+                          <Image
+                            src={imgSrc}
+                            alt={`Gallery image ${currentIndex + index + 1}`}
+                            width={300}
+                            height={300}
+                            quality={100}
+                            className="w-full h-full object-cover group-hover:scale-110 duration-300 transition-transform"
+                          />
+                          {/* Zoom indicator on hover */}
+                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <Icon icon="solar:eye-bold" width="32" height="32" className="text-white" />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Right Arrow */}
+                    {totalImages > imagesPerView && (
+                      <button
+                        onClick={handleNextGallery}
+                        disabled={currentIndex >= maxIndex}
+                        className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${
+                          currentIndex >= maxIndex
+                            ? "opacity-50 cursor-not-allowed"
+                            : "hover:bg-primary hover:text-white"
+                        }`}
+                        style={{ right: '-20px' }}
+                      >
+                        <Icon icon="solar:arrow-right-linear" width="24" height="24" />
+                      </button>
+                    )}
+                  </div>
+                )}
+
+                {/* Right Side - Video Card with iframe */}
+                <div className="flex items-center">
+                  <div className="relative rounded-lg overflow-hidden w-full h-full min-h-[400px]">
+                    <iframe
+                      src={video}
+                      className="w-full h-full rounded-lg"
+                      title="Event Video"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              /* If no video, spread gallery images horizontally */
+              gallery && gallery.length > 0 && (
                 <div className="relative">
                   {/* Left Arrow */}
                   {totalImages > imagesPerView && (
@@ -227,7 +304,8 @@ const EventDetails: FC<EventProps> = ({
                     </button>
                   )}
 
-                  <div className="grid grid-cols-2 gap-4">
+                  {/* Horizontal grid layout - 6 images */}
+                  <div className="grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-4">
                     {gallery.slice(currentIndex, currentIndex + imagesPerView).map((imgSrc, index) => (
                       <div 
                         key={currentIndex + index} 
@@ -266,41 +344,8 @@ const EventDetails: FC<EventProps> = ({
                     </button>
                   )}
                 </div>
-              )}
-
-              {/* Right Side - Video Card */}
-              {video && (
-                <div className="flex items-center">
-                  {!isPlaying ? (
-                    <div className="relative rounded-lg overflow-hidden w-full h-full min-h-[300px] group cursor-pointer" onClick={handlePlayVideo}>
-                      {/* Video thumbnail - using first frame or poster */}
-                      <video
-                        src={video}
-                        className="w-full h-full object-cover"
-                        preload="metadata"
-                      />
-                      {/* Play button overlay */}
-                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center">
-                        <div className="bg-primary group-hover:bg-secondary rounded-full p-6 transition-all duration-300 transform group-hover:scale-110">
-                          <Icon icon="solar:play-bold" width="32" height="32" className="text-white" />
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="relative rounded-lg overflow-hidden w-full h-full">
-                      <video
-                        src={video}
-                        controls
-                        autoPlay
-                        className="w-full h-full rounded-lg"
-                      >
-                        Your browser does not support the video tag.
-                      </video>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
+              )
+            )}
           </div>
         )}
 
@@ -361,12 +406,13 @@ const EventDetails: FC<EventProps> = ({
 
             {/* URL Content - Iframe */}
             {content.type === "url" && content.url && (
-              <div className="w-full h-screen">
+              <div className="w-full h-[600px] sm:h-[700px] md:h-[800px] lg:h-screen">
                 <iframe
                   src={content.url}
                   className="w-full h-full rounded-lg border border-border dark:border-dark_border"
                   title="Content"
                   allow="fullscreen"
+                  style={{ minHeight: '600px' }}
                 ></iframe>
               </div>
             )}

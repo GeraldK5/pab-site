@@ -56,7 +56,7 @@ const Hero = () => {
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black/30"></div>
+            <div className="absolute inset-0 bg-black/15"></div>
 
             {/* Content Container - Below Center */}
             <div className="absolute inset-0 flex items-center pt-15">
@@ -73,7 +73,7 @@ const Hero = () => {
                   {/* Read More Link */}
                   <Link href={`/events/event-details?event=${event.slug}`}>
                     <div className="flex items-end gap-2 mt-4 cursor-pointer hover:opacity-80 transition-opacity">
-                      <span className="text-primary font-medium text-sm">Read More</span>
+                      <span className="text-primary font-bold text-sm">Read More</span>
                       <Icon icon="solar:arrow-right-linear" className="text-primary text-base" />
                     </div>
                   </Link>
