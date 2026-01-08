@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Icon } from "@iconify/react";
-import { Eventdata } from "@/app/api/data";
+import { Eventdata } from "@/app/data/data";
 import { format } from "date-fns";
 
 const ITEMS_PER_PAGE = 12;
@@ -44,7 +44,7 @@ const PaginatedEventList = () => {
           {currentEvents.map((item, index) => (
             <Link 
               key={index} 
-              href={`/events/${item.slug}`} 
+              href={`/events/event-details?event=${item.slug}`} 
               className="group" 
               data-aos="fade-up" 
               data-aos-delay={`${index * 120}`}
@@ -72,7 +72,7 @@ const PaginatedEventList = () => {
                 {item.title}
               </h4>
               <p className="text-muted dark:text-white/60 text-base mb-6">{item.text}</p>
-              <h5 className="text-error hover:text-warning text-base font-medium flex gap-3 items-center w-fit">
+              <h5 className="text-yellow-400 hover:text-primary text-base font-medium flex gap-3 items-center w-fit">
                 Learn More
                 <span>
                   <Icon

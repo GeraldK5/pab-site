@@ -1,14 +1,17 @@
 "use client";
+import { Suspense } from "react";
 import MoreInfo from "@/components/SharedComponent/Volunteer";
 import EventDetails from "@/components/Events/EventDetail";
 import { useSearchParams } from "next/navigation";
 import { Eventdata } from "@/app/data/data";
 
-const Events = () => {
+// Extract the component that uses useSearchParams
+function EventContent() {
   const searchParams = useSearchParams();
   const slug = searchParams.get("event");
 
   const item = Eventdata.find((item) => item.slug === slug);
+  
   return (
     <>
       <EventDetails
@@ -28,6 +31,15 @@ const Events = () => {
       />
       <MoreInfo />
     </>
+  );
+}
+
+// Main component with Suspense wrapper
+const Events = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <EventContent />
+    </Suspense>
   );
 };
 
