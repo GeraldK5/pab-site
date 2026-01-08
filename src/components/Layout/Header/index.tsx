@@ -76,14 +76,23 @@ const Header: React.FC = () => {
           <div className="flex items-center justify-between py-4">
             {/* Logo with Tagline */}
             <div className="flex items-center gap-3">
-              <Link href="/" className="flex items-center">
-                <Image src="/logo.svg" alt="Logo" width={180} height={50} className="h-12 w-auto" />
+              <Link href="/" className="flex items-center gap-3">
+                <Image
+                  src="/logo.svg"
+                  alt="Logo"
+                  width={180}
+                  height={50}
+                  className="h-12 w-auto"
+                />
+
+                <div className="h-8 w-px bg-midnight_text/30 dark:bg-white/30" />
+
+                <span className="text-sm font-medium text-midnight_text dark:text-white whitespace-nowrap">
+                  Productivity Acceleration Bureau
+                </span>
               </Link>
-              <div className="h-8 w-px bg-midnight_text dark:bg-white opacity-30"></div>
-              <span className="text-sm font-medium text-midnight_text dark:text-white whitespace-nowrap">
-                Productivity Acceleration Bureau
-              </span>
             </div>
+
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-8">
@@ -91,11 +100,10 @@ const Header: React.FC = () => {
                 <Link
                   key={index}
                   href={item.href || "#"}
-                  className={`relative text-base font-medium transition-colors hover:text-primary ${
-                    pathUrl === item.href
-                      ? "text-yellow-400"
-                      : "text-midnight_text dark:text-white"
-                  }`}
+                  className={`relative text-base font-medium transition-colors hover:text-primary ${pathUrl === item.href
+                    ? "text-yellow-400"
+                    : "text-midnight_text dark:text-white"
+                    }`}
                 >
                   {item.label}
                   {pathUrl === item.href && (
@@ -123,9 +131,8 @@ const Header: React.FC = () => {
       {navbarOpen && <div className="fixed top-0 left-0 w-full h-full bg-black/50 z-40" />}
       <div
         ref={mobileMenuRef}
-        className={`lg:hidden fixed top-0 right-0 h-full w-full bg-white dark:bg-dark shadow-lg transform transition-transform duration-300 max-w-xs ${
-          navbarOpen ? "translate-x-0" : "translate-x-full"
-        } z-50`}
+        className={`lg:hidden fixed top-0 right-0 h-full w-full bg-white dark:bg-dark shadow-lg transform transition-transform duration-300 max-w-xs ${navbarOpen ? "translate-x-0" : "translate-x-full"
+          } z-50`}
       >
         <div className="flex items-center justify-between p-4 border-b border-border dark:border-dark_border">
           <h2 className="text-lg font-bold text-midnight_text dark:text-white">Menu</h2>
@@ -139,11 +146,10 @@ const Header: React.FC = () => {
               key={index}
               href={item.href || "#"}
               onClick={() => setNavbarOpen(false)}
-              className={`py-3 text-base font-medium transition-colors hover:text-primary ${
-                pathUrl === item.href
-                  ? "text-primary"
-                  : "text-midnight_text dark:text-white"
-              }`}
+              className={`py-3 text-base font-medium transition-colors hover:text-primary ${pathUrl === item.href
+                ? "text-primary"
+                : "text-midnight_text dark:text-white"
+                }`}
             >
               {item.label}
             </Link>
