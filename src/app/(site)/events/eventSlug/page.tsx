@@ -13,16 +13,16 @@ const Events = () => {
     <>
       <EventDetails
         title={item?.title}
-        detail={item?.detail}
+        detail={item?.detail ?? undefined}
         category={item?.category}
         location={item?.location}
         eventdate={item?.date}
         duration={item?.duration}
         type={item?.type}
-        entrants={item?.entrants}
+        entrants={undefined}
         image={item?.image}
         gallery={item?.gallery}
-        video={item?.video}
+        video={undefined}
         content={item?.content}
       />
       <MoreInfo />

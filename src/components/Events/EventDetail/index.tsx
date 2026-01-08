@@ -47,10 +47,23 @@ const EventDetails: FC<EventProps> = ({
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [htmlContent, setHtmlContent] = useState<string>("");
   const [loadingHtml, setLoadingHtml] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const formattedDate = eventdate
     ? format(new Date(eventdate), "MMM dd, yyyy")
     : "Date not available";
+
+  const imagesPerView = 4;
+  const totalImages = gallery?.length || 0;
+  const maxIndex = Math.max(0, totalImages - imagesPerView);
+
+  const handlePreviousGallery = () => {
+    setCurrentIndex((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleNextGallery = () => {
+    setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
+  };
 
   // Load HTML content
   useEffect(() => {
@@ -187,46 +200,77 @@ const EventDetails: FC<EventProps> = ({
         {((gallery && gallery.length > 0) || video) && (
           <div className="mt-12">
             <h3 className="text-2xl font-medium text-darktext mb-6">Activity Gallery</h3>
-
-            {/* Gallery Images - Horizontal Layout */}
-            {gallery && gallery.length > 0 && (
-              <div className="mb-8">
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 overflow-x-auto pb-4">
-                  {gallery.map((imgSrc, index) => (
-                    <div
-                      key={index}
-                      className="relative overflow-hidden rounded-lg group aspect-square cursor-pointer flex-shrink-0"
-                      onClick={() => openImageModal(imgSrc)}
+            
+            <div className="grid lg:grid-cols-2 grid-cols-1 gap-6">
+              {/* Left Side - 4 Images in 2x2 Grid with Navigation */}
+              {gallery && gallery.length > 0 && (
+                <div className="relative">
+                  {/* Left Arrow */}
+                  {totalImages > imagesPerView && (
+                    <button
+                      onClick={handlePreviousGallery}
+                      disabled={currentIndex === 0}
+                      className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${
+                        currentIndex === 0
+                          ? "opacity-50 cursor-not-allowed"
+                          : "hover:bg-primary hover:text-white"
+                      }`}
+                      style={{ left: '-20px' }}
                     >
-                      <Image
-                        src={imgSrc}
-                        alt={`Gallery image ${index + 1}`}
-                        width={200}
-                        height={200}
-                        quality={100}
-                        className="w-full h-full object-cover group-hover:scale-110 duration-300 transition-transform"
-                      />
-                      {/* Zoom indicator on hover */}
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <Icon icon="solar:eye-bold" width="32" height="32" className="text-white" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+                      <Icon icon="solar:arrow-left-linear" width="24" height="24" />
+                    </button>
+                  )}
 
-            {/* Video Section */}
-            {video && (
-              <div className="mb-8">
-                <h4 className="text-lg font-medium text-darktext mb-4">Video</h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    {gallery.slice(currentIndex, currentIndex + imagesPerView).map((imgSrc, index) => (
+                      <div 
+                        key={currentIndex + index} 
+                        className="relative overflow-hidden rounded-lg group aspect-square cursor-pointer"
+                        onClick={() => openImageModal(imgSrc)}
+                      >
+                        <Image
+                          src={imgSrc}
+                          alt={`Gallery image ${currentIndex + index + 1}`}
+                          width={300}
+                          height={300}
+                          quality={100}
+                          className="w-full h-full object-cover group-hover:scale-110 duration-300 transition-transform"
+                        />
+                        {/* Zoom indicator on hover */}
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                          <Icon icon="solar:eye-bold" width="32" height="32" className="text-white" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Right Arrow */}
+                  {totalImages > imagesPerView && (
+                    <button
+                      onClick={handleNextGallery}
+                      disabled={currentIndex >= maxIndex}
+                      className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${
+                        currentIndex >= maxIndex
+                          ? "opacity-50 cursor-not-allowed"
+                          : "hover:bg-primary hover:text-white"
+                      }`}
+                      style={{ right: '-20px' }}
+                    >
+                      <Icon icon="solar:arrow-right-linear" width="24" height="24" />
+                    </button>
+                  )}
+                </div>
+              )}
+
+              {/* Right Side - Video Card */}
+              {video && (
                 <div className="flex items-center">
                   {!isPlaying ? (
-                    <div className="relative rounded-lg overflow-hidden w-full max-w-2xl group cursor-pointer" onClick={() => setIsPlaying(true)}>
+                    <div className="relative rounded-lg overflow-hidden w-full h-full min-h-[300px] group cursor-pointer" onClick={handlePlayVideo}>
                       {/* Video thumbnail - using first frame or poster */}
                       <video
                         src={video}
-                        className="w-full h-auto object-cover"
+                        className="w-full h-full object-cover"
                         preload="metadata"
                       />
                       {/* Play button overlay */}
@@ -237,20 +281,20 @@ const EventDetails: FC<EventProps> = ({
                       </div>
                     </div>
                   ) : (
-                    <div className="relative rounded-lg overflow-hidden w-full max-w-2xl">
+                    <div className="relative rounded-lg overflow-hidden w-full h-full">
                       <video
                         src={video}
                         controls
                         autoPlay
-                        className="w-full h-auto rounded-lg"
+                        className="w-full h-full rounded-lg"
                       >
                         Your browser does not support the video tag.
                       </video>
                     </div>
                   )}
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         )}
 

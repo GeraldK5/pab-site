@@ -8,7 +8,7 @@ const HeroSub: FC<HeroSubProps> = ({ title }) => {
 
     return (
         <>
-            <section className="py-40 bg-[url('/images/background/herosub-banner.png')] bg-no-repeat bg-cover lg:mt-20 sm:mt-22 mt-10">
+            <section className="py-40 bg-[url('/images/background/herosub-banner.jpg')] bg-no-repeat bg-cover lg:mt-20 sm:mt-22 mt-10">
                 <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4">
                     <h2 className="text-white md:text-6xl text-4xl font-medium" data-aos="fade-right">{title}</h2>
                 </div>

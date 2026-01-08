@@ -5,15 +5,26 @@ import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { Eventdata } from "@/app/data/data";
 import { format, isWithinInterval, startOfWeek, endOfWeek, startOfMonth, endOfMonth, startOfYear, endOfYear } from "date-fns";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type DateFilter = "all" | "week" | "month" | "year";
 
 const EventList = () => {
   const [selectedFilter, setSelectedFilter] = useState<DateFilter>("all");
+  const [isClient, setIsClient] = useState(false);
+
+  // Set isClient to true after mount to avoid hydration mismatch
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Filter events based on selected date range
   const getFilteredEvents = () => {
+    // During SSR, return all events sorted by date
+    if (!isClient) {
+      return Eventdata.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    }
+
     const now = new Date();
 
     let filtered: typeof Eventdata;
