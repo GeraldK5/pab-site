@@ -59,7 +59,7 @@ const Hero = () => {
 
             {/* Content Container - Below Center */}
             <div className="absolute inset-0 flex items-center pt-15">
-              <div className="container mx-auto px-4 lg:max-w-[--breakpoint-xl]">
+              <div className="flex container mx-auto px-4 lg:max-w-[--breakpoint-xl]">
                 <div className="max-w-[50vw]">
                   <div className="bg-black/50 backdrop-blur-sm p-4 md:p-5 lg:p-6 border-b-4 border-yellow-400">
                     <h2 className="text-white text-xs md:text-sm lg:text-base font-semibold leading-snug line-clamp-2">
@@ -68,6 +68,11 @@ const Hero = () => {
                     <p className="text-white text-xs md:text-xs lg:text-sm mt-2 line-clamp-2">
                       {event.text}
                     </p>
+                  </div>
+                  {/* Read More Link */}
+                  <div className="flex items-end gap-2 mt-4">
+                    <span className="text-primary font-medium text-sm">Read More</span>
+                    <Icon icon="solar:arrow-right-linear" className="text-primary text-base" />
                   </div>
                 </div>
               </div>
