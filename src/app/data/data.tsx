@@ -182,7 +182,8 @@ export const Eventdata: {
         footer: `GET INVOLVED IN THE ONLINE CONSULTATIONS<br/><br/>
                   <strong>NOTE:</strong> This strategic plan is at the consultative stage of the development process. As you wait to meet you physically, give us your feedback towards the development of the final plan by 
                   <a href="https://docs.google.com/forms/d/e/1FAIpQLSczVmLUE3g-75wL3wy2hC_RspgizKiFkHPYirCyBAbMZ1RRgw/viewform?usp=header" class="text-primary underline font-semibold">CLICKING HERE</a> 
-                  to submit your question/comment.
+                  to submit your question/comment.<br/><br/>
+                  <strong>For more information, call:</strong> 0751206482 or 0700422202 or 0782506619 or 0775674134 or send an email to <a href="mailto:productivityaccelerationbureau@gmail.com" class="text-primary underline font-semibold">productivityaccelerationbureau@gmail.com</a>
                   `
       }
     },
