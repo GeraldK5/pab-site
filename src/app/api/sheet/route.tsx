@@ -1,17 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 
+/**
+ * This API route is deprecated - use the Google Sheets service instead
+ * See: src/services/googleSheets.ts
+ * 
+ * The client-side service handles Google Sheets API calls directly
+ * using NEXT_PUBLIC_GOOGLE_API_KEY
+ */
 export async function GET(request: NextRequest) {
-    const apiKey = process.env.GOOGLE_API_KEY;
-
-    const sheet = request.nextUrl.searchParams.get("sheet") || "Sheet1";
-    const range = request.nextUrl.searchParams.get("range") || sheet;
-    const sheetId = request.nextUrl.searchParams.get("sheetId");
-
-    const res = await fetch(
-        `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`
-    );
-
-    const data = await res.json();
-
-    return NextResponse.json(data);
+    // This endpoint is kept for backward compatibility only
+    // New code should use the googleSheets service
+    return NextResponse.json({
+        error: "This API route is deprecated. Please use the googleSheets service from src/services/googleSheets.ts instead."
+    }, { status: 410 });
 }

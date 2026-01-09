@@ -4,6 +4,7 @@ import Image from "next/image";
 import { format } from "date-fns";
 import { Icon } from "@iconify/react";
 import FeedbackModal from "../FeedBack";
+import { fetchFeedbackData } from "@/services/googleSheets";
 
 interface ContentType {
   header: string | null;
@@ -107,28 +108,11 @@ const EventDetails: FC<EventProps> = ({
     if (feedback?.showFeedback) {
       const sheetId = "159K4ZLxi3GXQBYyCkIrkuxoa6Cap8QPHarSbhZDg2hU";
 
-      fetch(`/api/sheet?sheetId=${sheetId}`)
-        .then((res) => res.json())
+      fetchFeedbackData(sheetId)
         .then((data) => {
           console.log("Feedback data from Google Sheets:", data);
-
-          if (data.values && data.values.length > 0) {
-            // First row contains questions
-            const questions = data.values[0];
-            setFeedbackQuestions(questions);
-
-            // Map remaining rows to feedback entries
-            const entries: FeedbackEntry[] = data.values.slice(1).map((row: string[]) => {
-              const entry: FeedbackEntry = { timestamp: row[0] || "" };
-              questions.forEach((question: string, index: number) => {
-                entry[question] = row[index] || "";
-              });
-              return entry;
-            });
-
-            setFeedbackData(entries);
-            console.log("Mapped feedback entries:", entries);
-          }
+          setFeedbackQuestions(data.questions);
+          setFeedbackData(data.entries);
         })
         .catch((error) => {
           console.error("Error fetching feedback data:", error);

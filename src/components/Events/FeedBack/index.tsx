@@ -124,7 +124,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
                 </div>
 
                 {/* Content */}
-                <div className="p-6 space-y-12">
+                <div className="p-1 space-y-12">
                     {/* Graphs Section */}
                     {(graphFields?.pieChart?.length || graphFields?.linearChart?.length) ? (
                         <div className="space-y-8">
@@ -144,7 +144,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
                                                     key={questionIndex}
                                                     className="bg-gray-50 dark:bg-gray-800 p-2 rounded-lg border border-border dark:border-dark_border"
                                                 >
-                                                    <h5 className="text-sm font-semibold text-darktext dark:text-white mb-0 line-clamp-2">
+                                                    <h5 className="text-sm font-semibold text-darktext dark:text-white mb-5 line-clamp-2">
                                                         {question}
                                                     </h5>
                                                     <ResponsiveContainer width="100%" height={300}>

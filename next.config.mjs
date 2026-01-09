@@ -8,8 +8,9 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   // Ensure environment variables are available
+  // NEXT_PUBLIC_ prefixed variables are automatically exposed to the browser
   env: {
-    GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
+    NEXT_PUBLIC_GOOGLE_API_KEY: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
   },
 }
 
