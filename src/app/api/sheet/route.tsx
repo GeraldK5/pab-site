@@ -6,10 +6,6 @@ export async function GET(request: NextRequest) {
     const sheet = request.nextUrl.searchParams.get("sheet") || "Sheet1";
     const range = request.nextUrl.searchParams.get("range") || sheet;
     const sheetId = request.nextUrl.searchParams.get("sheetId");
-    console.log('Key:', apiKey);
-    console.log('Sheet:', sheet);
-    console.log('Range:', range);
-    console.log('Sheet ID:', sheetId);
 
     const res = await fetch(
         `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`

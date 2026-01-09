@@ -7,6 +7,10 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // Ensure environment variables are available
+  env: {
+    GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
+  },
 }
 
 export default nextConfig
