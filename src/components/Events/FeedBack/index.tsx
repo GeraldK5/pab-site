@@ -113,7 +113,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Header */}
-                <div className="sticky top-0 bg-white dark:bg-gray-900 border-b border-border dark:border-dark_border p-6 flex items-center justify-between">
+                <div className="sticky top-0 bg-white dark:bg-gray-900 border-b border-border dark:border-dark_border p-1 sm:p-6 flex items-center justify-between">
                     <h2 className="text-2xl font-bold text-darktext dark:text-white">Community Feedback</h2>
                     <button
                         onClick={onClose}
@@ -124,7 +124,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
                 </div>
 
                 {/* Content */}
-                <div className="p-1 space-y-12">
+                <div className="p-1 sm:p-6 space-y-12">
                     {/* Graphs Section */}
                     {(graphFields?.pieChart?.length || graphFields?.linearChart?.length) ? (
                         <div className="space-y-8">
@@ -274,7 +274,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
                 </div>
 
                 {/* Footer */}
-                <div className="border-t border-border dark:border-dark_border p-6 flex justify-center">
+                <div className="border-t border-border dark:border-dark_border p-1 sm:p-6 flex justify-center">
                     <button
                         onClick={onClose}
                         className="px-6 py-2 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-colors duration-300"
