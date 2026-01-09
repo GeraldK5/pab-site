@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { format } from "date-fns";
 import { Icon } from "@iconify/react";
+import FeedbackModal from "../FeedBack";
 
 interface ContentType {
   header: string | null;
@@ -12,6 +13,11 @@ interface ContentType {
   docContent: string | null;
   url: string | null;
   footer: string | null;
+}
+
+interface FeedbackEntry {
+  timestamp: string;
+  [key: string]: string;
 }
 
 interface EventProps {
@@ -27,6 +33,13 @@ interface EventProps {
     allowFeedback: boolean;
     type: "url";
     url?: string;
+    showFeedback: boolean;
+    sheetId?: string;
+    graphFields?: {
+      pieChart?: number[];
+      linearChart?: Array<number | { index: number; scale: { min: number; max: number } }>;
+    };
+    openSuggestionFields?: number[];
   } | null;
   image?: any;
   gallery?: string[];
@@ -54,6 +67,9 @@ const EventDetails: FC<EventProps> = ({
   const [htmlContent, setHtmlContent] = useState<string>("");
   const [loadingHtml, setLoadingHtml] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [feedbackData, setFeedbackData] = useState<FeedbackEntry[]>([]);
+  const [feedbackQuestions, setFeedbackQuestions] = useState<string[]>([]);
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
 
   const formattedDate = eventdate
     ? format(new Date(eventdate), "MMM dd, yyyy")
@@ -74,7 +90,6 @@ const EventDetails: FC<EventProps> = ({
 
   // Load HTML content
   useEffect(() => {
-    console.log("Feedback:", feedback);
     if (content?.type === "html" && content?.htmlContent) {
       setLoadingHtml(true);
       fetch(content.htmlContent)
@@ -86,6 +101,40 @@ const EventDetails: FC<EventProps> = ({
         .catch(() => setLoadingHtml(false));
     }
   }, [content]);
+
+  // Fetch feedback data from Google Sheets
+  useEffect(() => {
+    if (feedback?.showFeedback) {
+      const sheetId = "159K4ZLxi3GXQBYyCkIrkuxoa6Cap8QPHarSbhZDg2hU";
+
+      fetch(`/api/sheet?sheetId=${sheetId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Feedback data from Google Sheets:", data);
+
+          if (data.values && data.values.length > 0) {
+            // First row contains questions
+            const questions = data.values[0];
+            setFeedbackQuestions(questions);
+
+            // Map remaining rows to feedback entries
+            const entries: FeedbackEntry[] = data.values.slice(1).map((row: string[]) => {
+              const entry: FeedbackEntry = { timestamp: row[0] || "" };
+              questions.forEach((question: string, index: number) => {
+                entry[question] = row[index] || "";
+              });
+              return entry;
+            });
+
+            setFeedbackData(entries);
+            console.log("Mapped feedback entries:", entries);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching feedback data:", error);
+        });
+    }
+  }, [feedback?.showFeedback]);
 
   const handlePlayVideo = () => {
     setIsPlaying(true);
@@ -220,8 +269,8 @@ const EventDetails: FC<EventProps> = ({
                         onClick={handlePreviousGallery}
                         disabled={currentIndex === 0}
                         className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${currentIndex === 0
-                            ? "opacity-50 cursor-not-allowed"
-                            : "hover:bg-primary hover:text-white"
+                          ? "opacity-50 cursor-not-allowed"
+                          : "hover:bg-primary hover:text-white"
                           }`}
                         style={{ left: '-20px' }}
                       >
@@ -258,8 +307,8 @@ const EventDetails: FC<EventProps> = ({
                         onClick={handleNextGallery}
                         disabled={currentIndex >= maxIndex}
                         className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${currentIndex >= maxIndex
-                            ? "opacity-50 cursor-not-allowed"
-                            : "hover:bg-primary hover:text-white"
+                          ? "opacity-50 cursor-not-allowed"
+                          : "hover:bg-primary hover:text-white"
                           }`}
                         style={{ right: '-20px' }}
                       >
@@ -292,8 +341,8 @@ const EventDetails: FC<EventProps> = ({
                       onClick={handlePreviousGallery}
                       disabled={currentIndex === 0}
                       className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${currentIndex === 0
-                          ? "opacity-50 cursor-not-allowed"
-                          : "hover:bg-primary hover:text-white"
+                        ? "opacity-50 cursor-not-allowed"
+                        : "hover:bg-primary hover:text-white"
                         }`}
                       style={{ left: '-20px' }}
                     >
@@ -331,8 +380,8 @@ const EventDetails: FC<EventProps> = ({
                       onClick={handleNextGallery}
                       disabled={currentIndex >= maxIndex}
                       className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg transition-all duration-300 ${currentIndex >= maxIndex
-                          ? "opacity-50 cursor-not-allowed"
-                          : "hover:bg-primary hover:text-white"
+                        ? "opacity-50 cursor-not-allowed"
+                        : "hover:bg-primary hover:text-white"
                         }`}
                       style={{ right: '-20px' }}
                     >
@@ -443,7 +492,17 @@ const EventDetails: FC<EventProps> = ({
         {/* Feedback Form Section */}
         {feedback?.allowFeedback && feedback?.type === "url" && feedback?.url && (
           <div className="mt-16">
-            <h3 className="text-2xl font-medium text-darktext mb-6">Feedback</h3>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-medium text-darktext">Feedback</h3>
+              {feedbackData.length > 0 && (
+                <button
+                  onClick={() => setShowFeedbackModal(true)}
+                  className="px-2 py-2 sm:px-6 sm:py-2 text-sm sm:text-base bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-colors duration-300 animate-shimmer"
+                >
+                  What People are Saying
+                </button>
+              )}
+            </div>
             <div className="w-full rounded-lg border border-border dark:border-dark_border overflow-hidden">
               <iframe
                 src={feedback.url}
@@ -482,6 +541,16 @@ const EventDetails: FC<EventProps> = ({
             </div>
           </div>
         )}
+
+        {/* Feedback Analytics Modal */}
+        <FeedbackModal
+          isOpen={showFeedbackModal}
+          onClose={() => setShowFeedbackModal(false)}
+          feedbackData={feedbackData}
+          feedbackQuestions={feedbackQuestions}
+          graphFields={feedback?.graphFields}
+          openSuggestionFields={feedback?.openSuggestionFields}
+        />
       </div>
     </section>
   );

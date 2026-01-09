@@ -39,7 +39,7 @@ const Header: React.FC = () => {
   return (
     <header className="fixed top-0 z-50 w-full bg-white dark:bg-dark shadow-sm">
       {/* Top Bar */}
-      <div className="bg-primary dark:bg-darkprimary">
+      <div className="bg-primary dark:bg-primary">
         <div className="container mx-auto lg:max-w-7xl px-4 py-1.5">
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-6">

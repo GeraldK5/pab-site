@@ -26,6 +26,13 @@ export const Eventdata: {
     allowFeedback: boolean;
     type: "url";
     url?: string;
+    showFeedback: boolean;
+    openSuggestionFields?: number[];
+    graphFields?: {
+      pieChart?: number[];
+      linearChart?: Array<number | { index: number; scale: { min: number; max: number } }>;
+    };
+    sheetId?: string;
   } | null;
   content: {
     header: string | null;
@@ -161,7 +168,19 @@ export const Eventdata: {
       feedback: {
         allowFeedback: true,
         type: 'url',
-        url: 'https://docs.google.com/forms/d/e/1FAIpQLSczVmLUE3g-75wL3wy2hC_RspgizKiFkHPYirCyBAbMZ1RRgw/viewform?usp=publish-editor'
+        url: 'https://docs.google.com/forms/d/e/1FAIpQLSczVmLUE3g-75wL3wy2hC_RspgizKiFkHPYirCyBAbMZ1RRgw/viewform?usp=publish-editor',
+        showFeedback: true,
+        openSuggestionFields: [3, 5],
+        graphFields: {
+          pieChart: [1, 2],
+          linearChart: [
+            {
+              index: 4,
+              scale: { min: 1, max: 5 }
+            }
+          ]
+        },
+        sheetId: '159K4ZLxi3GXQBYyCkIrkuxoa6Cap8QPHarSbhZDg2hU'
       },
       slug: "busoga-strategic-plan-session",
       text: "Think tank session finalizing the Busoga sub-region's strategic plan for wealth creation.",
